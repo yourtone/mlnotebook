@@ -1,0 +1,557 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>VC Dimension Part II | 机器学习笔记</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="beader">
+    
+    
+    <link rel="next" href="../section2/vc-dimension-three.html" />
+    
+    
+    <link rel="prev" href="../section2/vc-dimension-one.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-github="beader/mlnotebook" data-level="2.3" data-basepath=".." data-revision="1409033329936">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/beader/mlnotebook" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >机器学习笔记</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/beader" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/issues" target="blank" class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/edit/master/section2/vc-dimension-two.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+	
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="section1/README.html">
+            
+                
+                    <a href="../section1/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         When Can Machines Learn?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="section2/README.html">
+            
+                
+                    <a href="../section2/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Why Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="section2/is-learning-feasible.html">
+            
+                
+                    <a href="../section2/is-learning-feasible.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         机器学习的可行性
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="section2/vc-dimension-one.html">
+            
+                
+                    <a href="../section2/vc-dimension-one.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         VC Dimension Part I
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="2.3" data-path="section2/vc-dimension-two.html">
+            
+                
+                    <a href="../section2/vc-dimension-two.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         VC Dimension Part II
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="section2/vc-dimension-three.html">
+            
+                
+                    <a href="../section2/vc-dimension-three.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         VC Dimension Part III
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="section2/noise-and-error.html">
+            
+                
+                    <a href="../section2/noise-and-error.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         Noise and Error
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="section3/README.html">
+            
+                
+                    <a href="../section3/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         How Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="section3/linear-regression.html">
+            
+                
+                    <a href="../section3/linear-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Linear Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="section3/logistic-regression.html">
+            
+                
+                    <a href="../section3/logistic-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Logistic Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="section3/linear_models_for_classification.html">
+            
+                
+                    <a href="../section3/linear_models_for_classification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Linear Models for Classification
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="section4/README.html">
+            
+                
+                    <a href="../section4/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         How Can Machines Learn Better?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="section5/README.html">
+            
+                
+                    <a href="../section5/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         FAQ
+                    </a>
+                
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 38.46153846153846%;min-width: 30.76923076923077%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../section1/README.html" title="When Can Machines Learn?" class="chapter done new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+    
+        <a href="../section2/README.html" title="Why Can Machines Learn?" class="chapter done new-chapter" data-progress="2" style="left: 15.384615384615385%;"></a>
+    
+        <a href="../section2/is-learning-feasible.html" title="机器学习的可行性" class="chapter done " data-progress="2.1" style="left: 23.076923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-one.html" title="VC Dimension Part I" class="chapter done " data-progress="2.2" style="left: 30.76923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-two.html" title="VC Dimension Part II" class="chapter done " data-progress="2.3" style="left: 38.46153846153846%;"></a>
+    
+        <a href="../section2/vc-dimension-three.html" title="VC Dimension Part III" class="chapter  " data-progress="2.4" style="left: 46.15384615384615%;"></a>
+    
+        <a href="../section2/noise-and-error.html" title="Noise and Error" class="chapter  " data-progress="2.5" style="left: 53.84615384615385%;"></a>
+    
+        <a href="../section3/README.html" title="How Can Machines Learn?" class="chapter  new-chapter" data-progress="3" style="left: 61.53846153846154%;"></a>
+    
+        <a href="../section3/linear-regression.html" title="Linear Regression" class="chapter  " data-progress="3.1" style="left: 69.23076923076923%;"></a>
+    
+        <a href="../section3/logistic-regression.html" title="Logistic Regression" class="chapter  " data-progress="3.2" style="left: 76.92307692307692%;"></a>
+    
+        <a href="../section3/linear_models_for_classification.html" title="Linear Models for Classification" class="chapter  " data-progress="3.3" style="left: 84.61538461538461%;"></a>
+    
+        <a href="../section4/README.html" title="How Can Machines Learn Better?" class="chapter  new-chapter" data-progress="4" style="left: 92.3076923076923%;"></a>
+    
+        <a href="../section5/README.html" title="FAQ" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_8">
+                    
+                        <p>&emsp;&emsp;<a href="http://beader.me/2014/01/23/vc-dimension-one/" target="_blank">上一篇</a>用成长函数<script type="math/tex">m\_{\mathcal{H}}(N)</script>来衡量Hypotheses Set <script type="math/tex">\mathcal{H}</script>中有效的方程的数量(Effective Number of Hypotheses)，以取代Hoeffding&#39;s Inequality中的大<script type="math/tex">M</script>，并用一种间接的方式 --- break point，来寻找<script type="math/tex">m\_{\mathcal{H}}(N)</script>的上界，从而避免了直接研究<script type="math/tex">\mathcal{H}</script>的成长函数的困难。</p>
+<!--more-->
+<h2 id="the-vc-dimension">学习所需&quot;维他命&quot;(The VC Dimension)</h2>
+<script type="math/tex; mode=display">m\_{\mathcal{H}}(N)\leq \sum\_{i=0}^{k-1}\binom {N}{i}</script><p>&emsp;&emsp;根据之前得到的式子，我们知道如果一个<script type="math/tex">\mathcal{H}</script>存在break point，我们就有办法保证学出来的东西能够“举一反三”(good generalization)。一般来说break point越大的<script type="math/tex">\mathcal{H}</script>，其复杂度也更高，我们可以使用vc dimension来描述一个<script type="math/tex">\mathcal{H}</script>的复杂程度，这个vc dimension来自Vladimir Vapnik与Alexey Chervonenkis所提出的<a href="http://en.wikipedia.org/wiki/Vapnik%E2%80%93Chervonenkis_theory" target="_blank">VC Theory</a>。</p>
+<p>&emsp;&emsp;根据定义，一个<script type="math/tex">\mathcal{H}</script>的vc dimension(记为<script type="math/tex">d\_{vc}(\mathcal{H})</script>)，是这个<script type="math/tex">\mathcal{H}</script>最多能够shatter掉的点的数量 (the largest value of N for which <script type="math/tex">m\_{\mathcal{H}}(N)=2^N</script>)，如果不管多少个点<script type="math/tex">\mathcal{H}</script>都能够shatter他们，则<script type="math/tex">d\_{vc}(H)=\infty</script>。不难看出<script type="math/tex">d\_{vc}</script>与break point k的关系，有<script type="math/tex">k=d\_{vc}+1</script>，因此我们用这个<script type="math/tex">d\_{vc}</script>来描述成长函数的上界：</p>
+<script type="math/tex; mode=display">m\_{\mathcal{H}}(N)\leq \sum\_{i=0}^{d\_{vc}} \binom {N}{i}</script><p>&emsp;&emsp;上式右边(RHS)事实上是最高项为<script type="math/tex">d\_{vc}</script>的多项式，利用数学归纳法可得：</p>
+<script type="math/tex; mode=display">m\_{\mathcal{H}}(N)\leq \sum\_{i=0}^{d\_{vc}} \binom {N}{i} \leq N^{d\_{vc}}+1</script><h2 id="bound-the-vc-generalization-bound">更加一般化的Bound (The VC Generalization Bound)</h2>
+<p>&emsp;&emsp;上一篇的末尾我们设想利用有限的<script type="math/tex">m\_{\mathcal{H}}(N)</script>来替换无限的大<script type="math/tex">M</script>，得到<script type="math/tex">\mathcal{H}</script>遇到Bad Sample的概率上界：</p>
+<script type="math/tex; mode=display">\mathbb{P}\_\mathcal{D}[BAD\ D]\leq 2m\_{\mathcal{H}}(N)\cdot exp(-2\epsilon ^2N)</script><p>&emsp;&emsp;其中<script type="math/tex">\mathbb{P}\_\mathcal{D}[BAD\ D]</script>是<script type="math/tex">\mathcal{H}</script>中所有有效的方程(Effective Hypotheses)遇到Bad Sample的联合概率，即<script type="math/tex">\mathcal{H}</script>中存在一个方程遇上bad sample，则说<script type="math/tex">\mathcal{H}</script>遇上bad sample。用更加精准的数学符号来表示上面的不等式：</p>
+<script type="math/tex; mode=display">\mathbb{P}[\exists h \in \mathcal{H}\text{ s.t. } |E\_{in}(h)-E\_{out}(h)|\gt \epsilon]\leq 2m\_{\mathcal{H}}(N)\cdot exp(-2\epsilon ^2N)</script><p>&emsp;&emsp;注：<script type="math/tex">\exists h \in \mathcal{H}\text{ s.t. }</script> - <script type="math/tex">\mathcal{H}</script>中存在(<script type="math/tex">\exists</script>)满足(<script type="math/tex">\text{ s.t }</script>)...的<script type="math/tex">h</script></p>
+<p>&emsp;&emsp;但事实上上面的不等式是不严谨的，为什么呢？<script type="math/tex">m\_{\mathcal{H}}(N)</script>描述的是<script type="math/tex">\mathcal{H}</script>作用于数据量为<script type="math/tex">N</script>的资料<script type="math/tex">\mathcal{D}</script>，有效的方程数，因此<script type="math/tex">\mathcal{H}</script>当中每一个<script type="math/tex">h</script>作用于<script type="math/tex">\mathcal{D}</script>都能算出一个<script type="math/tex">E\_{in}</script>来，一共能有<script type="math/tex">m\_{\mathcal{H}}(N)</script>个不同的<script type="math/tex">E\_{in}</script>，是一个有限的数。但在out of sample的世界里(总体)，往往存在无限多个点，平面中任意一条直线，随便转一转动一动，就能产生一个不同的<script type="math/tex">E\_out</script>来。<script type="math/tex">E\_{in}</script>的可能取值是有限个的，而<script type="math/tex">E\_{out}</script>的可能取值是无限的，无法直接套用union bound，我们得先把上面那个无限多种可能的<script type="math/tex">E\_{out}</script>换掉。那么如何把<script type="math/tex">E\_{out}</script>变成有限个呢？<br>&emsp;&emsp;假设我们能从总体当中再获得一份<script type="math/tex">N</script>笔的验证资料(verification set)<script type="math/tex">\mathcal{D}'</script>，对于任何一个<script type="math/tex">h</script>我们可以算出它作用于<script type="math/tex">\mathcal{D}'</script>上的<script type="math/tex">E\_{in}^{'}</script>，由于<script type="math/tex">\mathcal{D}'</script>也是总体的一个样本，因此如果<script type="math/tex">E\_{in}</script>和<script type="math/tex">E\_{out}</script>离很远，有非常大的可能<script type="math/tex">E\_{in}</script>和<script type="math/tex">E\_{in}^{'}</script>也会离得比较远。 </p>
+<p><img src="images/pdf_of_ein.png" alt=""></p>
+<p>&emsp;&emsp;事实上当N很大的时候，<script type="math/tex">E\_{in}</script>和<script type="math/tex">E\_{in}^{'}</script>可以看做服从以<script type="math/tex">E\_{out}</script>为中心的近似正态分布(Gaussian)，如上图。<script type="math/tex">[|E\_{in}-E\_{out}|\text{ is large}]</script>这个事件取决于<script type="math/tex">\mathcal{D}</script>，如果<script type="math/tex">[|E\_{in}-E\_{out}|\text{ is large}]</script>，则如果我们从总体中再抽一份<script type="math/tex">\mathcal{D}^{'}</script>出来，有50%左右的可能性会发生<script type="math/tex">[|E\_{in}-E\_{in}^{'}|\text{ is large}]</script>，还有大约50%的可能<script type="math/tex">[|E\_{in}-E\_{in}^{'}|\text{ is not large}]</script>。<br>&emsp;&emsp;因此，我们可以得到<script type="math/tex">\mathbb{P}[|E\_{in}-E\_{out}|\text{ is large}]</script>的一个大概的上界可以是<script type="math/tex">2\mathbb{P}[|E\_{in}-E\_{in}^{'}|\text{ is large}]</script>，以此为启发去寻找二者之间的关系。</p>
+<p>&emsp;&emsp;引理：</p>
+<script type="math/tex; mode=display">(1-2e^{-\frac{1}{2}\epsilon^2N})\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E\_{in}(h)-E\_{out}(h)| \gt \epsilon]\leq \mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E\_{in}(h)-E\_{in}^{'}(h)| \gt \frac{\epsilon}{2}]</script><p>&emsp;&emsp;上面的不等式是从何而来的呢？我们先从RHS出发：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\;\;\;\,\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2}] \\\
+&\geq \mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2} \mathbf{\;and\;} \underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon] \\\
+&=\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon] \;\times \\\
+&\;\;\;\,\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2}\;\;|\;\;\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon] \\\
+&\;\;\;\,\text{(注：sup - 上确界，最小上界。)}
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;上式第二行的不等号可以由<script type="math/tex">\mathbb{P}[\mathcal{B}\_1]\geq \mathbb{P}[\mathcal{B}\_1 \textbf{ and } \mathcal{B}\_2]</script>得到，第三、四行则是贝叶斯公式，联合概率等于先验概率与条件概率之积。</p>
+<p>&emsp;&emsp;下面来看看不等式的最后一项<script type="math/tex">\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E\_{in}(h)-E\_{in}^{'}(h)| \gt \frac{\epsilon}{2}\;\;|\;\;\underset{h\in \mathcal{H}}{sup}\ |E\_{in}(h)-E\_{out}(h)| \gt \epsilon]</script>。对于一个固定的data set <script type="math/tex">\mathcal{D}</script>来说，我们任选一个<script type="math/tex">h^{\*}</script>使得<script type="math/tex">|E\_{in}(h^{\*})-E\_{out}(h^{\*})|\gt \epsilon</script>，注意到这个<script type="math/tex">h^{\*}</script>只依赖于<script type="math/tex">\mathcal{D}</script>而不依赖于<script type="math/tex">\mathcal{D}^{'}</script>噢，对于<script type="math/tex">\mathcal{D}^{'}</script>来说可以认为这个<script type="math/tex">h^{\*}</script> is forced to pick out。  </p>
+<p>&emsp;&emsp;由于<script type="math/tex">h^{\*}</script>是对于<script type="math/tex">\mathcal{D}</script>来说满足<script type="math/tex">|E\_{in}-E\_{out}|\gt \epsilon</script>的任意一个hypothesis，因此可以把式子中的上确界(sup)先去掉。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\;\;\;\,\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2}\;\;|\;\;\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon] \\\
+&\geq \mathbb{P}[|E_{in}(h^{*})-E_{in}^{'}(h^{*})| \gt \frac{\epsilon}{2}\;\;|\;\;\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon]
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;这里就要稍微出动一下前人的智慧了：</p>
+<script type="math/tex; mode=display">
+\left.\begin{matrix}
+|E_{in}^{'} - E_{out}|\leq \frac{\epsilon}{2}\\\
+|E_{in}-E_{out}| \gt \epsilon
+\end{matrix}\right\}
+\Rightarrow 
+|E_{in}-E_{in}^{'}| \gt \frac{\epsilon}{2}
+</script>
+
+<p>&emsp;&emsp;为了直观一点<script type="math/tex">h^{\*}</script>就不写了。经过各种去掉绝对值符号又加上绝对值符号的运算，可以发现LHS的两个不等式是RHS那个不等式的充分非必要条件。而LHS第二个不等式是已知的，对于<script type="math/tex">h^{\*}</script>必成立的。因此我们拿LHS这个充分非必要条件去替换RHS这个不等式，继续前面的不等式：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\;\;\;\,\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2}\;\;|\;\;\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon] \\\
+&\geq \mathbb{P}[|E_{in}(h^{*})-E_{in}^{'}(h^{*})| \gt \frac{\epsilon}{2}\;\;|\;\;\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon] \\\
+&\geq \mathbb{P}[|E_{in}^{'}(h^{*})-E_{out}(h^{*})| \leq \frac{\epsilon}{2}\;\;|\;\;\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{out}(h)| \gt \epsilon] \\\
+&\geq 1-2e^{-\frac{1}{2}\epsilon^2N}
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;最后一个不等号动用了Hoeffding Inequality：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\;\;\;\,\mathbb{P}[|...|\gt \epsilon]\leq 2Mexp(-2\epsilon^2N) \\\
+&\Leftrightarrow 1-\mathbb{P}[|...|\gt \epsilon]\geq 1-2Mexp(-2\epsilon^2N) \\\
+&\Leftrightarrow \mathbb{P}[|...|\leq \epsilon]\geq 1-2Mexp(-2\epsilon^2N)
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;之前说过对于<script type="math/tex">\mathcal{D}^{'}</script>来说，<script type="math/tex">h^{\*}</script> is forced to pick out，因此<script type="math/tex">M=1</script>。接着把<script type="math/tex">\epsilon</script>替换为<script type="math/tex">\frac{\epsilon}{2}</script>，就成了<script type="math/tex">\mathbb{P}[|...|\lt \frac{\epsilon}{2}]\geq 2exp(-\frac{1}{2}\epsilon^2N)</script>。则我们可以得到引理中的不等式。</p>
+<p>&emsp;&emsp;对于<script type="math/tex">e^{-\frac{1}{2}e^2N}</script>，一个比较合理的要求是<script type="math/tex">e^{-\frac{1}{2}\epsilon^2N}\lt \frac{1}{4}</script>，譬如我们有400笔资料，想要<script type="math/tex">E\_{in}</script>和<script type="math/tex">E\_{out}</script>相差不超过0.1。注意到这只是一个bound，只要要求不太过分，也不能太宽松即可，适当的宽松一点是OK的。当然这里也是想跟之前所说的 &quot;<script type="math/tex">\mathbb{P}[|E\_{in}-E\_{out}|\text{ is large}]</script>的一个大概的上界可以是<script type="math/tex">2\mathbb{P}[|E\_{in}-E\_{in}^{'}|\text{ is large}]</script>&quot; 当中的2倍有所结合。</p>
+<p>&emsp;&emsp;所以就有<script type="math/tex">1-2e^{-\frac{1}{2}e^2N}\gt \frac{1}{2}</script>。带回引理，可得：</p>
+<script type="math/tex; mode=display">\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E\_{in}(h)-E\_{out}(h)| \gt \epsilon]\leq 2\,\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E\_{in}(h)-E\_{in}^{'}(h)| \gt \frac{\epsilon}{2}]</script><p>&emsp;&emsp;这样一来我们就把无限多种的<script type="math/tex">E\_{out}</script>换成了有限多种的<script type="math/tex">E\_{in}</script>，因为<script type="math/tex">\mathcal{D}</script>与<script type="math/tex">\mathcal{D}^{'}</script>的大小相等，都为<script type="math/tex">N</script>，因此我们手中一共有<script type="math/tex">2N</script>笔数据，这样<script type="math/tex">\mathcal{H}</script>作用于<script type="math/tex">\mathcal{D}+\mathcal{D}^{'}</script>最多能产生<script type="math/tex">m\_{\mathcal{H}}(2N)</script>种dichotomies。此时我们针对上面的不等式，就又可以使用union bound了。(关于union bound，可以参考上一篇<a href="http://beader.me/2014/01/23/vc-dimension-one/" target="_blank">VC Dimension, Part I</a>)</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{P}[BAD] &\leq 2\,\mathbb{P}[\underset{h\in \mathcal{H}}{sup}\ |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2}] \\\
+&\leq 2\,m_{\mathcal{H}}(2N)\,\mathbb{P}[\text{fixed } \textit{h} \text{ s.t. } |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2}] \\\
+&\text{(用固定的hypothesis去看$E_{in}$与$E_{in}^{'}$的差别。)}
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;前面的动作相当于先从总体中抽出<script type="math/tex">2N</script>笔数据，把这<script type="math/tex">2N</script>笔数据当成一个比较小的bin，然后在这个bin中抽取<script type="math/tex">N</script>笔作为<script type="math/tex">\mathcal{D}</script>，剩下的<script type="math/tex">N</script>笔作为<script type="math/tex">\mathcal{D}^{'}</script>，<script type="math/tex">\mathcal{D}</script>和<script type="math/tex">\mathcal{D}^{'}</script>之间是没有交集的。在我们想象出来的这个small bin当中，整个bin的错误率为<script type="math/tex">\frac{E\_{in}+E\_{out}}{2}</script>，又因为：</p>
+<script type="math/tex; mode=display">|E\_{in}-E\_{in}^{'}|\gt \frac{\epsilon}{2} \Leftrightarrow |E\_{in} - \frac{E\_{in}+E\_{in}^{'}}{2}|\gt \frac{\epsilon}{4}</script><p>&emsp;&emsp;所以用RHS替换LHS之后，前面不等式就又可以使用Hoeffding inequality了：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{P}[BAD] 
+&\leq 2\,m_{\mathcal{H}}(2N)\,\mathbb{P}[\text{fixed } \textit{h} \text{ s.t. } |E_{in}(h)-E_{in}^{'}(h)| \gt \frac{\epsilon}{2}] \\\
+&=2\,m_{\mathcal{H}}(2N)\,\mathbb{P}[\text{fixed } \textit{h} \text{ s.t. } |E_{in}(h)-\frac{E_{in}(h)+E_{in}^{'}(h)}{2}| \gt \frac{\epsilon}{4}]\\\
+&\;\;\;\text{(Hoeffding without replacement)} \\\
+&\leq 2\,m_{\mathcal{H}}(2N)\cdot 2\,exp(-2(\frac{\epsilon}{4})^2N)
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;这上面千辛万苦得出来的这个bound就叫做Vapnik-Chervonenkis (VC) bound：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{P}[BAD] &= \mathbb{P}[\exists h \in \mathcal{H}\text{ s.t. } |E_{in}(h)-E_{out}(h)|\gt \epsilon] \\\
+&\leq 4m_{\mathcal{H}}(2N)exp(-\frac{1}{8}\epsilon^2N)
+\end{aligned}
+</script>
+
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../section2/vc-dimension-one.html" class="navigation navigation-prev " aria-label="Previous page: VC Dimension Part I"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../section2/vc-dimension-three.html" class="navigation navigation-next " aria-label="Next page: VC Dimension Part III"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"disqus":{"shortName":"mlnotebook"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

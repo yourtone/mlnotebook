@@ -1,0 +1,564 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Noise and Error | 机器学习笔记</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="beader">
+    
+    
+    <link rel="next" href="../section3/README.html" />
+    
+    
+    <link rel="prev" href="../section2/vc-dimension-three.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-github="beader/mlnotebook" data-level="2.5" data-basepath=".." data-revision="1409033329936">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/beader/mlnotebook" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >机器学习笔记</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/beader" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/issues" target="blank" class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/edit/master/section2/noise-and-error.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+	
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="section1/README.html">
+            
+                
+                    <a href="../section1/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         When Can Machines Learn?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="section2/README.html">
+            
+                
+                    <a href="../section2/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Why Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="section2/is-learning-feasible.html">
+            
+                
+                    <a href="../section2/is-learning-feasible.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         机器学习的可行性
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="section2/vc-dimension-one.html">
+            
+                
+                    <a href="../section2/vc-dimension-one.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         VC Dimension Part I
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="section2/vc-dimension-two.html">
+            
+                
+                    <a href="../section2/vc-dimension-two.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         VC Dimension Part II
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="section2/vc-dimension-three.html">
+            
+                
+                    <a href="../section2/vc-dimension-three.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         VC Dimension Part III
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="2.5" data-path="section2/noise-and-error.html">
+            
+                
+                    <a href="../section2/noise-and-error.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         Noise and Error
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="section3/README.html">
+            
+                
+                    <a href="../section3/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         How Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="section3/linear-regression.html">
+            
+                
+                    <a href="../section3/linear-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Linear Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="section3/logistic-regression.html">
+            
+                
+                    <a href="../section3/logistic-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Logistic Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="section3/linear_models_for_classification.html">
+            
+                
+                    <a href="../section3/linear_models_for_classification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Linear Models for Classification
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="section4/README.html">
+            
+                
+                    <a href="../section4/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         How Can Machines Learn Better?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="section5/README.html">
+            
+                
+                    <a href="../section5/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         FAQ
+                    </a>
+                
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 53.84615384615385%;min-width: 46.15384615384615%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../section1/README.html" title="When Can Machines Learn?" class="chapter done new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+    
+        <a href="../section2/README.html" title="Why Can Machines Learn?" class="chapter done new-chapter" data-progress="2" style="left: 15.384615384615385%;"></a>
+    
+        <a href="../section2/is-learning-feasible.html" title="机器学习的可行性" class="chapter done " data-progress="2.1" style="left: 23.076923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-one.html" title="VC Dimension Part I" class="chapter done " data-progress="2.2" style="left: 30.76923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-two.html" title="VC Dimension Part II" class="chapter done " data-progress="2.3" style="left: 38.46153846153846%;"></a>
+    
+        <a href="../section2/vc-dimension-three.html" title="VC Dimension Part III" class="chapter done " data-progress="2.4" style="left: 46.15384615384615%;"></a>
+    
+        <a href="../section2/noise-and-error.html" title="Noise and Error" class="chapter done " data-progress="2.5" style="left: 53.84615384615385%;"></a>
+    
+        <a href="../section3/README.html" title="How Can Machines Learn?" class="chapter  new-chapter" data-progress="3" style="left: 61.53846153846154%;"></a>
+    
+        <a href="../section3/linear-regression.html" title="Linear Regression" class="chapter  " data-progress="3.1" style="left: 69.23076923076923%;"></a>
+    
+        <a href="../section3/logistic-regression.html" title="Logistic Regression" class="chapter  " data-progress="3.2" style="left: 76.92307692307692%;"></a>
+    
+        <a href="../section3/linear_models_for_classification.html" title="Linear Models for Classification" class="chapter  " data-progress="3.3" style="left: 84.61538461538461%;"></a>
+    
+        <a href="../section4/README.html" title="How Can Machines Learn Better?" class="chapter  new-chapter" data-progress="4" style="left: 92.3076923076923%;"></a>
+    
+        <a href="../section5/README.html" title="FAQ" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_5">
+                    
+                        <h1 id="-vs--deterministic-vs-probabilistic">确定性 v.s 概率性 (deterministic v.s probabilistic)</h1>
+<p>&emsp;&emsp;让我们来回忆一下机器学习的基础架构：</p>
+<p>&emsp;&emsp;<img src="images/learning_flow_with_noise.png" alt=""></p>
+<p>&emsp;&emsp;首先我们认为存在一个未知的真理 <script type="math/tex">f</script>，认为 <script type="math/tex">\mathcal{D}</script>中的<script type="math/tex">y</script>就是 <script type="math/tex">f</script>作用于<script type="math/tex">x</script>产生的，因此虽然无法直接得到 <script type="math/tex">f</script>，但若能找到一个和 <script type="math/tex">f</script>表现差不多的函数，也算是能学到东西。但在现实世界中，我们拿到的 <script type="math/tex">\mathcal{D}</script>并不是完美的，会有noise的存在，什么是noise呢？我们在用收音机听新闻的时候，往往会听到背景有个“沙沙”的声音，信号不好的时候，这种“沙沙”声会越来越大，这个“沙沙”声就是<a href="http://www.simplynoise.com/" target="_blank">noise</a>。我们耳朵听到的是 <script type="math/tex">\mathcal{D}</script>(收音机放出来的东西)，我们希望通过 <script type="math/tex">\mathcal{D}</script>理解到 <script type="math/tex">f</script>(播音员真实要表达的)，这个noise就会干扰这个理解的过程， noise越大，我们就越难分辨播音员到底在说什么。在Learning中，noise主要表现为以下几种形式：</p>
+<ul>
+<li>noise in y : 本来应该是圈圈的，却被标记为叉叉</li>
+<li>noise in y : 输入<script type="math/tex">\mathcal{X}</script>完全相同的点，既有被标记圈圈的，也有被标记叉叉的</li>
+<li>noise in x : 输入<script type="math/tex">\mathcal{X}</script>本身就存在问题，譬如100被写成了100万</li>
+</ul>
+<p>&emsp;&emsp; <script type="math/tex">f</script> 是一个“确定性”(deterministic)的模型，但<script type="math/tex">noise</script>是一个随机发生的东西，他们两个共同作用的结果，就成了一个“概率性”(probabilistic)的东西：</p>
+<script type="math/tex; mode=display">
+\left.\begin{matrix}
+\text{idea mini-target }\;\; f(x)=1\\\
+\text{'flipping' noise } level=0.3
+\end{matrix}\right\}
+\Rightarrow 
+\begin{matrix}
+P(+1|x) = 0.7\\\
+P(-1|x) = 0.3
+\end{matrix}
+</script>
+
+<p>&emsp;&emsp;对于某个样本 <script type="math/tex">x</script>，理想状态下，应该有<script type="math/tex">y=f(x)=+1</script>，但由于某种noise的存在，该noise会有30%的概率会转换<script type="math/tex">f(x)</script>的结果(把+1变成-1或把-1变成+1)。因此在<script type="math/tex">\mathcal{D}</script>中，该样本有70%的概率表现出<script type="math/tex">y=+1</script>，30%的概率表现出<script type="math/tex">y=-1</script>.</p>
+<p>&emsp;&emsp;再举个例子来对比下不考虑noise与考虑noise的情形有什么不同。假设不存在noise的情况下，某个hypothesis <script type="math/tex">h</script>在<script type="math/tex">\mathcal{D}</script>中的错误率<script type="math/tex">E\_{in}=\mu</script>。现在考虑加上一个 <em>&#39;flipping&#39; noise level</em> <script type="math/tex">=1-\lambda</script>的noise，即：</p>
+<script type="math/tex; mode=display">
+P(y|x)=
+\left\{\begin{matrix}
+\lambda & y=f(x)\\\
+1-\lambda & y\neq f(x)
+\end{matrix}\right.
+</script>
+
+<p>&emsp;&emsp;考虑到了noise，<script type="math/tex">h</script>判断正确的样本当中，实际只有<script type="math/tex">\lambda</script>这么多的比例是真的判断正确的，同理<script type="math/tex">h</script>判断错误的样本中，实际也只有<script type="math/tex">\lambda</script>这么多的比例是真的判断错误。假设<script type="math/tex">\mathcal{D}</script>中样本量为N：</p>
+<script type="math/tex; mode=display">
+\begin{matrix}
+ & \text{no noise} & \text{noise}\\\ 
+h\text{ on }\mathcal{D} & \left\{\begin{matrix}
+(1-\mu)N & right\\ 
+\\
+\\
+\mu N& wrong 
+\end{matrix}\right. & \begin{matrix}
+\left\{\begin{matrix}
+\lambda(1-\mu)N & \text{true right}\\ 
+(1-\lambda)(1-\mu)N & \text{false right}
+\end{matrix}\right.\\ 
+\\
+\left\{\begin{matrix}
+\lambda \mu N & \text{true wrong}\\ 
+(1-\lambda)\mu N & \text{false wrong}
+\end{matrix}\right.
+\end{matrix}
+\end{matrix}
+</script>
+
+<p>&emsp;&emsp;因此，如果存在noise，则<script type="math/tex">h</script>判断错误的数量实际应该为<script type="math/tex">\lambda \mu N + (1-\lambda)(1-\mu)N</script>这么多，<script type="math/tex">h</script>真实的<script type="math/tex">E\_{in}=\lambda \mu + (1-\lambda)(1-\mu)</script>。稍微做个合并，得到：</p>
+<script type="math/tex; mode=display">\text{true  }E\_{in} = (2\lambda - 1)\mu + (1-\lambda)</script><p>&emsp;&emsp;假设通过学习我们得到一个<script type="math/tex">g</script>，并且有<script type="math/tex">E\_{in}(g)=0.2</script>(即<script type="math/tex">\mu = 0.2</script>)，若学习所用的<script type="math/tex">\mathcal{D}</script>中存在 <em>&#39;flipping&#39; level=0.1</em> 的noise(即<script type="math/tex">\lambda = 0.9</script>)，则真实的<script type="math/tex">E\_{in}(g)=0.26</script>。若 <em>&#39;flipping&#39; level</em> 达到0.2，则真实的<script type="math/tex">E\_{in}(g) = 0.32</script>。可见noise的存在对learning是有一定影响的，在noise较大的情况下，算出的<script type="math/tex">E\_{in}</script>与真实的<script type="math/tex">E\_{in}</script>也会有很大的差别。因此想要学得好，<script type="math/tex">\mathcal{D}</script>的质量非常重要。</p>
+<h1 id="error-measure">误差的衡量(Error Measure)</h1>
+<p>&emsp;&emsp;在把learning的工作交给机器的时候，必须让机器明白你学习的目标，譬如你想让什么什么最大化，或者什么什么最小化。通常的做法是把每一个预测值与真实值之间的误差(error)看成一种成本，机器要做的，就是在<script type="math/tex">\mathcal{H}</script>中，挑选一个能使总成本最低的函数。</p>
+<p>&emsp;&emsp;之前提到的二元分类问题，就是对判断错误的点，记误差为1，判断正确的点，记误差为0：</p>
+<script type="math/tex; mode=display">
+\text{error of h on }x_n
+\left\{\begin{matrix}
+1 & h(x_n)\neq y_n\\\
+0 & h(x_n) = y_n
+\end{matrix}\right.
+</script>
+
+<p>&emsp;&emsp;不管是把<script type="math/tex">y=+1</script>的猜错成<script type="math/tex">-1</script>，或是把<script type="math/tex">y=-1</script>的猜错成<script type="math/tex">+1</script>，其产生的误差都为1。</p>
+<p>&emsp;&emsp;在实际应用中，这个误差的定义可以很灵活，例如下面两个指纹验证的例子：</p>
+<ol>
+<li><p>超市利用指纹识别判断某个人是否是他们的会员，若是会员会给相应的折扣。这种情形下，可能做出两种不同的错误判断，把非会员错认为是会员，把会员错认为是非会员。但对于超市来说，这两种错误的成本应该是不同的。把非会员错认为是会员，无非损失些许的折扣；但若是把会员识别为非会员从而不给折扣，就会导致顾客的不满，从而损失掉了未来的生意。针对这种需求，或许下面这个error的衡量办法会更加合理一些。把+1(会员)错判为-1(非会员)的error为10，把-1错判为+1的error为1。</p>
+<p> <img src="images/cost_supermarket.png" alt=""><br> (f代表真实值，g代表预测值)</p>
+</li>
+<li><p>中情局的门禁系统，利用指纹判断是内部工作人员，才允许进入。这种情形下，若是把好人当坏人，代价并不高，无非就是请工作人员多按一次指纹的功夫，但如果把坏人当好人，损失可就大了。针对这种需求，下面这个error的衡量办法可能更加合理。</p>
+<p> <img src="images/cost_cia.png" alt=""></p>
+</li>
+</ol>
+<p>&emsp;&emsp;之前一直说的<script type="math/tex">E\_{in}(h)</script>，就是<script type="math/tex">h</script>作用于<script type="math/tex">\mathcal{D}</script>中每一笔数据，所产生的成本之和：</p>
+<script type="math/tex; mode=display">
+E_{in}(h)=\frac{1}{N}\sum_{n=1}^{N}err(h,x_n,y_n)
+</script>
+
+<p>&emsp;&emsp;对于上面中情局的例子，<script type="math/tex">err(h,x\_n,y\_n)</script>的定义如下：</p>
+<script type="math/tex; mode=display">
+err(h,x_n,y_n)=\left\{\begin{matrix}
+1 & h(x_n)\neq y_n,y_n=+1 \\\
+1000 & h(x_n)\neq y_n,y_n=-1
+\end{matrix}\right.
+</script>
+
+<p>&emsp;&emsp;这种误差衡量方式称为&quot;pointwise measure&quot;，即对每个点记录误差，总误差为所有点产生的误差之和。在Ng那门课上，这个<script type="math/tex">E\_{in}(h)</script>被称为cost function，通过cost function可以计算出当前<script type="math/tex">h</script>作用于<script type="math/tex">\mathcal{D}</script>所造成的总成本，通过learning找到一个能够使总成本最小的<script type="math/tex">h</script>，就完成了学习的过程。</p>
+<p>&emsp;&emsp;针对不同的问题与不同的使用环境，我们可以设计不同的误差衡量方法，下面是集中常见的误差的定义：</p>
+<ul>
+<li><p>0/1 error ，通常用于分类问题：<br><script type="math/tex">err(\widetilde{y},y)=[\widetilde{y}\neq y]</script></p>
+</li>
+<li><p>squared error，通常用于回归问题：<br><script type="math/tex">err(\widetilde{y},y)=(\widetilde{y}-y)^2</script></p>
+</li>
+<li><p>absolute error：<br><script type="math/tex">err(\widetilde{y},y)=abs(\widetilde{y}-y)</script></p>
+</li>
+</ul>
+<p>&emsp;&emsp;总结一下，先根据问题的不同选择合适的误差衡量方式，0/1 error还是squared error或者是其他针对某一场景特殊设计的error？把<script type="math/tex">h</script>作用于<script type="math/tex">\mathcal{D}</script>中所有点的error加总起来就成了一个cost function，也就是<script type="math/tex">E\_{in}(h)</script>，接着要设计一个最优化算法<script type="math/tex">\mathcal{A}</script>，它能够从<script type="math/tex">\mathcal{H}</script>中挑选出能够使<script type="math/tex">E\_{in}</script>最小的方程<script type="math/tex">g</script>，learning就完成了。对于不同类型的cost function，通常会使用不同的最优化算法。对于某些cost function，很容易实现<script type="math/tex">E\_{in}</script>最小，比如之后会说的线性回归。对于某些cost function，寻找最小的<script type="math/tex">E\_{in}</script>是困难的，回忆之前说的<a href="http://beader.me/2013/12/21/perceptron-learning-algorithm/" target="_blank">PLA</a>，用0/1 error来衡量误差，要minimize <script type="math/tex">E\_{in}</script>就是个NP Hard问题。</p>
+<p>&emsp;&emsp;当然除此之外，cost function中还可以增加一些来自于error之外的成本，以达到限制模型复杂度方面的目的，如ridge regression、lasso等，这些以后有机会都会提到。</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../section2/vc-dimension-three.html" class="navigation navigation-prev " aria-label="Previous page: VC Dimension Part III"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../section3/README.html" class="navigation navigation-next " aria-label="Next page: How Can Machines Learn?"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"disqus":{"shortName":"mlnotebook"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

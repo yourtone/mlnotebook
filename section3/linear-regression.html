@@ -1,0 +1,653 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Linear Regression | 机器学习笔记</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="beader">
+    
+    
+    <link rel="next" href="../section3/logistic-regression.html" />
+    
+    
+    <link rel="prev" href="../section3/README.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-github="beader/mlnotebook" data-level="3.1" data-basepath=".." data-revision="1409033329936">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/beader/mlnotebook" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >机器学习笔记</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/beader" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/issues" target="blank" class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/edit/master/section3/linear-regression.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+	
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="section1/README.html">
+            
+                
+                    <a href="../section1/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         When Can Machines Learn?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="section2/README.html">
+            
+                
+                    <a href="../section2/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Why Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="section2/is-learning-feasible.html">
+            
+                
+                    <a href="../section2/is-learning-feasible.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         机器学习的可行性
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="section2/vc-dimension-one.html">
+            
+                
+                    <a href="../section2/vc-dimension-one.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         VC Dimension Part I
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="section2/vc-dimension-two.html">
+            
+                
+                    <a href="../section2/vc-dimension-two.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         VC Dimension Part II
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="section2/vc-dimension-three.html">
+            
+                
+                    <a href="../section2/vc-dimension-three.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         VC Dimension Part III
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="section2/noise-and-error.html">
+            
+                
+                    <a href="../section2/noise-and-error.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         Noise and Error
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="section3/README.html">
+            
+                
+                    <a href="../section3/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         How Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter active" data-level="3.1" data-path="section3/linear-regression.html">
+            
+                
+                    <a href="../section3/linear-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Linear Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="section3/logistic-regression.html">
+            
+                
+                    <a href="../section3/logistic-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Logistic Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="section3/linear_models_for_classification.html">
+            
+                
+                    <a href="../section3/linear_models_for_classification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Linear Models for Classification
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="section4/README.html">
+            
+                
+                    <a href="../section4/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         How Can Machines Learn Better?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="section5/README.html">
+            
+                
+                    <a href="../section5/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         FAQ
+                    </a>
+                
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 69.23076923076923%;min-width: 61.53846153846154%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../section1/README.html" title="When Can Machines Learn?" class="chapter done new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+    
+        <a href="../section2/README.html" title="Why Can Machines Learn?" class="chapter done new-chapter" data-progress="2" style="left: 15.384615384615385%;"></a>
+    
+        <a href="../section2/is-learning-feasible.html" title="机器学习的可行性" class="chapter done " data-progress="2.1" style="left: 23.076923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-one.html" title="VC Dimension Part I" class="chapter done " data-progress="2.2" style="left: 30.76923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-two.html" title="VC Dimension Part II" class="chapter done " data-progress="2.3" style="left: 38.46153846153846%;"></a>
+    
+        <a href="../section2/vc-dimension-three.html" title="VC Dimension Part III" class="chapter done " data-progress="2.4" style="left: 46.15384615384615%;"></a>
+    
+        <a href="../section2/noise-and-error.html" title="Noise and Error" class="chapter done " data-progress="2.5" style="left: 53.84615384615385%;"></a>
+    
+        <a href="../section3/README.html" title="How Can Machines Learn?" class="chapter done new-chapter" data-progress="3" style="left: 61.53846153846154%;"></a>
+    
+        <a href="../section3/linear-regression.html" title="Linear Regression" class="chapter done " data-progress="3.1" style="left: 69.23076923076923%;"></a>
+    
+        <a href="../section3/logistic-regression.html" title="Logistic Regression" class="chapter  " data-progress="3.2" style="left: 76.92307692307692%;"></a>
+    
+        <a href="../section3/linear_models_for_classification.html" title="Linear Models for Classification" class="chapter  " data-progress="3.3" style="left: 84.61538461538461%;"></a>
+    
+        <a href="../section4/README.html" title="How Can Machines Learn Better?" class="chapter  new-chapter" data-progress="4" style="left: 92.3076923076923%;"></a>
+    
+        <a href="../section5/README.html" title="FAQ" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_10">
+                    
+                        <p>&emsp;&emsp;前面花了很大篇幅在说机器为何能学习，接下来要说的是机器是怎么学习的，进入算法<script type="math/tex">\mathcal{A}</script>的部分。<a href="http://beader.me/2014/03/02/noise-and-error/" target="_blank">上一篇</a>稍微提到了几个error的衡量方式，接下来的几篇笔记要讲的就是各种error measurement的区别以及针对它们如何设计最优化的算法。通过设计出来的算法，使得机器能够从<script type="math/tex">\mathcal{H}</script>(Hypothesis Set)当中挑选可以使得cost function最小的<script type="math/tex">h</script>作为<script type="math/tex">g</script>输出。</p>
+<p>&emsp;&emsp;本篇以众所周知的线性回归为例，从方程的形式、误差的衡量方式、如何最小化<script type="math/tex">E\_{in}</script>的角度出发，并简单分析了Hat Matrix的性质与几何意义，希望对线性回归这一简单的模型有个更加深刻的理解。</p>
+<h1 id="">方程的形式：</h1>
+<script type="math/tex; mode=display">
+h(x)=\sum_{i=\color{red}{0}}^d w_ix_i= w^Tx \\\
+</script>
+
+<p>&emsp;&emsp;长得很像perceptron(都是直线嘛)，perceptron是<script type="math/tex">h(x)=sign(w^Tx)</script>。</p>
+<h1 id="--squared-error">误差的衡量 — 平方误差(squared error)：</h1>
+<script type="math/tex; mode=display">
+\begin{matrix}
+err(\hat{y}_n,y_n) = (\hat{y}_n-y_n)^2\\\
+(\hat{y}_n\text{为预测值，}y_n\text{为真实值})
+\end{matrix}
+</script>
+
+<h1 id="cost-function">Cost function：</h1>
+<script type="math/tex; mode=display">
+E_{in}(w)=\frac{1}{N}\sum_{n=1}^N(\hat{y}_n - y_n)=\frac{1}{N}\sum_{n=1}^N(w^Tx_n-y_n)^2
+</script>
+
+<p>&emsp;&emsp;<script type="math/tex">h(x)</script>是一个以<script type="math/tex">x</script>为变量的方程，而<script type="math/tex">E\_{in}(w)</script>变成了一个以<script type="math/tex">w</script>为变量的方程。这样一来，我们就把“在<script type="math/tex">\mathcal{H}</script>中寻找能使平均误差最小的方程”这个问题，转换为“求解一个函数的最小值”的问题。使得<script type="math/tex">E\_{in}(w)</script>最小的<script type="math/tex">w</script>，就是我们要寻找的那个最优方程的参数。</p>
+<h1 id="e_inw">如何最小化<script type="math/tex">E\_{in}(w)</script>：</h1>
+<p>&emsp;&emsp;用矩阵形式表示：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E_{in}(\color{blue}{w}) &= \frac{1}{N}\sum_{n=1}^{N}(\color{blue}{w^T}\color{red}{x_n}-\color{purple}{y_n})^2=\frac{1}{N}\sum_{n=1}^{N}(\color{red}{x_n^T}\color{blue}{w}-\color{purple}{y_n})^2 \\\
+
+&=\frac{1}{N}\begin{Vmatrix}
+\color{red}{x_1^T}\color{blue}{w}-\color{purple}{y_1}\\\ 
+\color{red}{x_2^T}\color{blue}{w}-\color{purple}{y_2}\\\ 
+...\\\ 
+\color{red}{x_N^T}\color{blue}{w}-\color{purple}{y_N}
+\end{Vmatrix}^2 \\\
+
+&=\frac{1}{N}\begin{Vmatrix}
+\color{red}{\begin{bmatrix}
+--x_1^T--\\\ 
+--x_2^T--\\\ 
+...\\\
+--x_N^T--
+\end{bmatrix}}
+\color{blue}{w} - 
+\color{purple}{\begin{bmatrix}
+y_1\\\ 
+y_2\\\ 
+...\\\
+y_3
+\end{bmatrix}}
+\end{Vmatrix}^2 \\\
+
+&=\frac{1}{N}||
+\underbrace{\color{red}{X}}_{N\times d+1}\;\;\;
+\underbrace{\color{blue}{w}}_{d+1\times 1} \; - \;
+\underbrace{\color{purple}{y}}_{N\times 1}
+||^2
+
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;<script type="math/tex">\color{red}{X}</script>与<script type="math/tex">\color{purple}{y}</script>来源于<script type="math/tex">\mathcal{D}</script>，是固定不变的，因此它是一个以<script type="math/tex">\color{blue}{w}</script>为变量的函数。我们需要解使得<script type="math/tex">E\_{in}</script>最小的<script type="math/tex">\color{blue}{w}</script>，即<script type="math/tex">\underset{\color{blue}{w}}{min}\,E\_{in}(\color{blue}{w})=\frac{1}{N}\begin{Vmatrix}\color{red}{X}\color{blue}{w}-\color{purple}{y}\end{Vmatrix}^2</script>。这个<script type="math/tex">E\_{in}(\color{blue}{w})</script>是一个连续(continuous)、处处可微(differentiable)的凸函数(convex)：</p>
+<p>  <img src="images/wlin.png" alt=""> &emsp;&emsp;</p>
+<p>&emsp;&emsp;对于这一类函数，只需要解其一阶导数为0时的解即可。</p>
+<script type="math/tex; mode=display">\nabla E_{in}(\color{blue}{w})\equiv \begin{bmatrix}
+\frac{\partial E_{in}}{\partial \color{blue}{w}_0}(\color{blue}{w})\\\ 
+\frac{\partial E_{in}}{\partial \color{blue}{w}_1}(\color{blue}{w})\\\ 
+...\\\
+\frac{\partial E_{in}}{\partial \color{blue}{w}_d}(\color{blue}{w})
+\end{bmatrix}=\begin{bmatrix}
+\color{orange}{0}\\\
+\color{orange}{0}\\\
+...\\\
+\color{orange}{0}
+\end{bmatrix}</script>
+
+<p>&emsp;&emsp;关于多元函数的求导，就是线性代数的范畴了：</p>
+<script type="math/tex; mode=display">
+\boxed
+{
+\begin{matrix}
+\text{一元的情况}\\\
+\\\
+E_{in}(\color{blue}{w})=\frac{1}{N}(\color{red}{a}\color{blue}{w^2}-2\color{brown}{b}\color{blue}{w}+\color{purple}{c})\\\ 
+\nabla E_{in}(\color{blue}{w})=\frac{1}{N}(2\color{red}{a}\color{blue}{w}-2\color{brown}{b})
+\end{matrix} 
+}
+\xrightarrow{\text{推广至}}
+\boxed{
+\begin{matrix}
+\text{多元的情况}\\\
+\\\
+E_{in}(\color{blue}{w})=\frac{1}{N}(\color{blue}{w^T}\color{red}{A}\color{blue}{w}-2\color{blue}{w^T}\color{brown}{b}+\color{purple}{c})\\\ 
+\nabla E_{in}(\color{blue}{w})=\frac{1}{N}(2\color{red}{A}\color{blue}{w}-2\color{brown}{b})
+\end{matrix}
+}
+</script>
+
+<p>&emsp;&emsp;所以有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\nabla E_{in}(\color{blue}{w}) &=\nabla \frac{1}{N}(\color{blue}{w^T}\color{red}{X^TX}\color{blue}{w}-2\color{blue}{w^T}\color{brown}{X^Ty}+\color{purple}{y^Ty}) \\\
+&=\frac{2}{N}(\color{red}{X^TX}\color{blue}{w}-\color{brown}{X^Ty})
+\end{aligned}
+
+</script>
+
+<p>&emsp;&emsp;令<script type="math/tex">\nabla E\_{in}(\color{blue}{w})=0</script>，可得最佳解：</p>
+<script type="math/tex; mode=display">
+\color{blue}{w_{LIN}}=\underbrace{(\color{red}{X^TX})^{-1}\color{red}{X^T}}_{pseudo-inverse\;\color{red}{X^{\dagger}}}\;\;\;\color{purple}{y} = \color{red}{X^{\dagger}} \color{purple}{y}
+</script>
+
+<p>&emsp;&emsp;当<script type="math/tex">\color{red}{X^TX}</script>可逆的时候用它作为pseudo-inverse矩阵<script type="math/tex">\color{red}{X^{\dagger}}</script>，当<script type="math/tex">\color{red}{X^TX}</script>不可逆的时候，再用其他方式定义<script type="math/tex">\color{red}{X^{\dagger}}</script>，这里就不详述了。</p>
+<p>&emsp;&emsp;用以<script type="math/tex">\color{blue}{w\_{LIN}}</script>为参数的线性方程对原始数据做预测，可以得到拟合值<script type="math/tex">\hat{y}=\color{red}{X}\color{blue}{w\_{LIN}}=\color{red}{XX^{\dagger}}\color{purple}{y}</script>。这里又称<script type="math/tex">\color{orange}{H}=\color{red}{XX^{\dagger}}</script>为Hat Matrix，帽子矩阵，<script type="math/tex">\color{orange}{H}</script>为<script type="math/tex">\color{purple}{y}</script>带上了帽子，成为<script type="math/tex">\hat{y}</script>，很形象吧。</p>
+<h1 id="hat-matrix-">Hat Matrix 的几何意义</h1>
+<p><img src="images/geoview_hatmatrix.png" alt=""></p>
+<p>&emsp;&emsp;这张图展示的是在N维实数空间<script type="math/tex">\mathbb{R}^N</script>中，注意这里是N=数据笔数，<script type="math/tex">\color{purple}{y}</script>中包含所有真实值，<script type="math/tex">\hat{y}</script>中包含所有预测值，与之前讲的输入空间是d+1维是不一样的噢。<script type="math/tex">\color{red}{X}</script>中包含d+1个column：</p>
+<ul>
+<li><script type="math/tex">\hat{y}=\color{red}{X}\color{blue}{w\_{LIN}}</script>是<script type="math/tex">\color{red}{X}</script>的一个线性组合，<script type="math/tex">\color{red}{X}</script>中每个column对应<script type="math/tex">\mathbb{R}^N</script>下的一个向量，共有d+1个这样的向量，因此<script type="math/tex">\hat{y}</script>在这d+1个向量所构成的<script type="math/tex">\color{red}{span}</script>(平面)上。</li>
+<li>事实上我们要做的就是在这个平面上找到一个向量<script type="math/tex">\hat{y}</script>使得他与真实值之间的距离<script type="math/tex">|\color{green}{y-\hat{y}}|</script>最短。不难发现当<script type="math/tex">\hat{y}</script>是<script type="math/tex">\color{purple}{y}</script>在这个平面上的投影时，即<script type="math/tex">\color{green}{y-\hat{y}}\perp \color{red}{span}</script>时，<script type="math/tex">|\color{green}{y-\hat{y}}|</script>最短。</li>
+<li>所以之前说过的Hat Matrix <script type="math/tex">\color{orange}{H}</script>，为<script type="math/tex">\color{purple}{y}</script>戴上帽子，所做的就是投影这个动作，寻找<script type="math/tex">\color{red}{span}</script>上<script type="math/tex">\color{purple}{y}</script>的投影。</li>
+<li><script type="math/tex">\color{orange}{H}\color{purple}{y}=\hat{y}</script>，<script type="math/tex">(I-\color{orange}{H})\color{purple}{y}=\color{green}{y-\hat{y}}</script>。(<script type="math/tex">I</script>为单位矩阵)</li>
+</ul>
+<p>&emsp;&emsp;下面来探究一下<script type="math/tex">\color{orange}{H}</script>的性质，这个很重要噢。</p>
+<script type="math/tex; mode=display">\text{Hat Matrix }\color{orange}{H} = \color{red}{X(X^TX)}^{-1}\color{red}{X^T}:</script><ul>
+<li>对称性(symetric)，即<script type="math/tex">\color{orange}{H}=\color{orange}{H^T}</script>：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\color{orange}{H^T} &= (\color{red}{X(X^TX)}^{-1}\color{red}{X^T})^T \\\
+&=\color{red}{X({(X^TX)}^{-1})^TX^T} \\\
+&=\color{red}{\color{red}{X(X^TX)}^{-1}\color{red}{X^T}}\\\
+&=\color{orange}{H}
+\end{aligned}
+</script>
+
+<ul>
+<li>幂等性(idempotent)，即<script type="math/tex">\color{orange}{H^2}=\color{orange}{H}</script>：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\color{orange}{H^2} &= (\color{red}{X(X^TX)}^{-1}\color{red}{X^T})(\color{red}{X(X^TX)}^{-1}\color{red}{X^T})\\\
+&=\color{red}{X\;}\underbrace{\color{red}{(X^TX)}^{-1}\color{red}{(X^TX)}}_{I}\;\color{red}{(X^TX)}^{-1}\color{red}{X^T} \\\
+&=\color{red}{X}\color{red}{(X^TX)}^{-1}\color{red}{X^T}\\\
+&=\color{orange}{H}
+\end{aligned}
+</script>
+
+
+<ul>
+<li>半正定(positive semi-definite)，即所有特征值为非负数：<br>(以下<script type="math/tex">\lambda</script>为特征值，<script type="math/tex">b</script>为对应的特征向量)<script type="math/tex; mode=display">
+\begin{aligned}
+\color{orange}{H}b&=\lambda b\\\
+\color{orange}{H^2}b&=\lambda \color{orange}{H}b \\\
+&=\lambda (\lambda b)\\\
+\text{(因为}\color{orange}{H^2}&=\color{orange}{H}\text{)}\\\
+\color{orange}{H^2}b&=\color{orange}{H}b=\lambda b\\\
+\text{所以}&:\\\
+\lambda ^2b&=\lambda b \\\
+\text{即}&:\\\
+\lambda (\lambda -1)b&=0 \\\
+\lambda = 0 &\text{ or } \lambda=1
+\end{aligned}
+</script>
+
+</li>
+</ul>
+<p>&emsp;&emsp;林老师在课堂上讲到：</p>
+<script type="math/tex; mode=display">trace(I-\color{orange}{H}) = N-(d+1)</script><p>&emsp;&emsp;<script type="math/tex">trace</script>为矩阵的迹。这条性质很重要，但是为什么呢？证明过程有点多，以后有机会再补充，心急的同学可以看这里[General formulas for bias and variance in OLS][4]。一个矩阵的<script type="math/tex">trace</script>等于该矩阵的所有特征值(Eigenvalues)之和。</p>
+<p><img src="images/geoview_hatmatrix_noise.png" alt=""></p>
+<p>&emsp;&emsp;假设<script type="math/tex">\color{purple}{y}</script>由<script type="math/tex">\color{red}{f(X)\in span}+noise</script>构成的。有<script type="math/tex">\color{purple}{y}=\color{red}{f(X)}+noise</script>。之前讲到<script type="math/tex">\color{orange}{H}</script>作用于某个向量，会得到该向量在<script type="math/tex">\color{red}{span}</script>上的投影，而<script type="math/tex">I-\color{orange}{H}</script>作用于某个向量，会得到那条与<script type="math/tex">\color{red}{span}</script>垂直的向量，在这里就是图中的<script type="math/tex">\color{green}{y-\hat{y}}</script>，即<script type="math/tex">(I-\color{orange}{H})noise=\color{green}{y-\hat{y}}</script>。</p>
+<p>&emsp;&emsp;这个<script type="math/tex">\color{green}{y-\hat{y}}</script>是真实值与预测值的差，其长度就是就是所有点的平方误差之和。于是就有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+E_{in}(\color{blue}{w_{LIN}})&=\frac{1}{N}||\color{green}{y-\hat{y}}||^2\\\
+&=\frac{1}{N}||(I-\color{orange}{H})noise||^2 \\\
+&=\frac{1}{N}trace(I-\color{orange}{H})||noise||^2 \\\
+&=\frac{1}{N}(N-(d+1))||noise||^2
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;上面的证明不太好整理进来，依然可以参考<a href="http://www.stat.berkeley.edu/~census/general.pdf" target="_blank">General formulas for bias and variance in OLS</a>。</p>
+<p>&emsp;&emsp;因此，就平均而言，有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\color{red}{\overline{E_{in}}}&=\text{noise level}\cdot(1-\frac{d+1}{N})\\\
+\color{blue}{\overline{E_{out}}}&=\text{noise level}\cdot(1+\frac{d+1}{N}) \;\;\;(后面这个不懂证了。)
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;花这么大力气是为了什么，又回到之前learning可行性的话题了。</p>
+<p>  <img src="images/linear_regression_learning_curve.png" alt=""></p>
+<p>&emsp;&emsp;<script type="math/tex">\color{red}{\overline{E\_{in}}}</script>和<script type="math/tex">\color{blue}{\overline{E\_{out}}}</script>都向<script type="math/tex">\sigma ^2</script>(noise level)收敛，并且他们之间的差异被<script type="math/tex">\frac{2(d+1)}{N}</script>给bound住了。有那么点像VC bound，不过要比VC bound来的更严格一些。</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../section3/README.html" class="navigation navigation-prev " aria-label="Previous page: How Can Machines Learn?"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../section3/logistic-regression.html" class="navigation navigation-next " aria-label="Next page: Logistic Regression"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"disqus":{"shortName":"mlnotebook"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

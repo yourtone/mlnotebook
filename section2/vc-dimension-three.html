@@ -1,0 +1,588 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>VC Dimension Part III | 机器学习笔记</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="beader">
+    
+    
+    <link rel="next" href="../section2/noise-and-error.html" />
+    
+    
+    <link rel="prev" href="../section2/vc-dimension-two.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-github="beader/mlnotebook" data-level="2.4" data-basepath=".." data-revision="1409033329936">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/beader/mlnotebook" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >机器学习笔记</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/beader" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/issues" target="blank" class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/edit/master/section2/vc-dimension-three.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+	
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="section1/README.html">
+            
+                
+                    <a href="../section1/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         When Can Machines Learn?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="section2/README.html">
+            
+                
+                    <a href="../section2/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Why Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="section2/is-learning-feasible.html">
+            
+                
+                    <a href="../section2/is-learning-feasible.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         机器学习的可行性
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="section2/vc-dimension-one.html">
+            
+                
+                    <a href="../section2/vc-dimension-one.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         VC Dimension Part I
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="section2/vc-dimension-two.html">
+            
+                
+                    <a href="../section2/vc-dimension-two.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         VC Dimension Part II
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="2.4" data-path="section2/vc-dimension-three.html">
+            
+                
+                    <a href="../section2/vc-dimension-three.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         VC Dimension Part III
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="section2/noise-and-error.html">
+            
+                
+                    <a href="../section2/noise-and-error.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         Noise and Error
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="section3/README.html">
+            
+                
+                    <a href="../section3/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         How Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="section3/linear-regression.html">
+            
+                
+                    <a href="../section3/linear-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Linear Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="section3/logistic-regression.html">
+            
+                
+                    <a href="../section3/logistic-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Logistic Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="section3/linear_models_for_classification.html">
+            
+                
+                    <a href="../section3/linear_models_for_classification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Linear Models for Classification
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="section4/README.html">
+            
+                
+                    <a href="../section4/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         How Can Machines Learn Better?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="section5/README.html">
+            
+                
+                    <a href="../section5/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         FAQ
+                    </a>
+                
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 46.15384615384615%;min-width: 38.46153846153846%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../section1/README.html" title="When Can Machines Learn?" class="chapter done new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+    
+        <a href="../section2/README.html" title="Why Can Machines Learn?" class="chapter done new-chapter" data-progress="2" style="left: 15.384615384615385%;"></a>
+    
+        <a href="../section2/is-learning-feasible.html" title="机器学习的可行性" class="chapter done " data-progress="2.1" style="left: 23.076923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-one.html" title="VC Dimension Part I" class="chapter done " data-progress="2.2" style="left: 30.76923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-two.html" title="VC Dimension Part II" class="chapter done " data-progress="2.3" style="left: 38.46153846153846%;"></a>
+    
+        <a href="../section2/vc-dimension-three.html" title="VC Dimension Part III" class="chapter done " data-progress="2.4" style="left: 46.15384615384615%;"></a>
+    
+        <a href="../section2/noise-and-error.html" title="Noise and Error" class="chapter  " data-progress="2.5" style="left: 53.84615384615385%;"></a>
+    
+        <a href="../section3/README.html" title="How Can Machines Learn?" class="chapter  new-chapter" data-progress="3" style="left: 61.53846153846154%;"></a>
+    
+        <a href="../section3/linear-regression.html" title="Linear Regression" class="chapter  " data-progress="3.1" style="left: 69.23076923076923%;"></a>
+    
+        <a href="../section3/logistic-regression.html" title="Logistic Regression" class="chapter  " data-progress="3.2" style="left: 76.92307692307692%;"></a>
+    
+        <a href="../section3/linear_models_for_classification.html" title="Linear Models for Classification" class="chapter  " data-progress="3.3" style="left: 84.61538461538461%;"></a>
+    
+        <a href="../section4/README.html" title="How Can Machines Learn Better?" class="chapter  new-chapter" data-progress="4" style="left: 92.3076923076923%;"></a>
+    
+        <a href="../section5/README.html" title="FAQ" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_7">
+                    
+                        <p>笔记整理自台大林轩田老师的开放课程-<a href="https://www.coursera.org/course/ntumlone" target="_blank">机器学习基石</a>，笔记中所有图片来自于课堂讲义。</p>
+<p>&emsp;&emsp;<a href="http://beader.me/2014/02/15/vc-dimension-two/" target="_blank">上一篇</a>讲到了VC Dimension以及VC Bound。VC Bound所描述的是在给定数据量N以及给定的Hypothesis Set的条件下，遇到坏事情的概率的上界，即<script type="math/tex">E\_{in}</script>与<script type="math/tex">E\_{out}</script>差很远的概率，最多是多少。VC Bound用公式表示就是：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{P}[BAD] &= \mathbb{P}[\exists h \in \mathcal{H}\text{ s.t. } |E_{in}(h)-E_{out}(h)|\gt \epsilon] \\\
+&\leq 4m_{\mathcal{H}}(2N)exp(-\frac{1}{8}\epsilon^2N)
+\end{aligned}
+</script>
+
+<!--more-->
+<p>&emsp;&emsp;其中<script type="math/tex">m\_{\mathcal{H}}(N)</script>为Hypothesis Set的成长函数，有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\\m_{\mathcal{H}}(N)\leq \sum_{i=0}^{d_{vc}}\binom {N}{i}\leq N^{d_{vc}} \\\
+\textit{( for }N\geq 2, d_{vc}\geq 2\textit{ )}
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;因为寻找所有Hypothesis Set的成长函数是困难的，因此我们再利用<script type="math/tex">N^{d\_{vc}}</script>来bound住所有VC Dimension为<script type="math/tex">d\_{vc}</script>的Hypothesis Set的成长函数。所以对于任意一个从<script type="math/tex">\mathcal{H}</script>中的<script type="math/tex">g</script>来说，有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\;\;\;\,\mathbb{P}[|E_{in}(g) - E_{out}(g)\gt \epsilon|] \\\
+&\leq \mathbb{P}[BAD]\\\
+&= \mathbb{P}[\exists h \in \mathcal{H}\text{ s.t. } |E_{in}(h)-E_{out}(h)|\gt \epsilon] \\\
+&\leq 4m_{\mathcal{H}}(2N)exp(-\frac{1}{8}\epsilon^2N) \\\
+&\leq 4(2N)^{d_{vc}}exp(-\frac{1}{8}\epsilon^2N) \\\
+&\textit{( if }d_{vc}\textit{ is finite )}
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;因此说想让机器真正学到东西，并且学得好，有三个条件：</p>
+<ol>
+<li><script type="math/tex">\mathcal{H}</script>的<script type="math/tex">d\_{vc}</script>是有限的，这样VC Bound才存在。(good <script type="math/tex">\mathcal{H}</script>)</li>
+<li><script type="math/tex">N</script>足够大(对于特定的<script type="math/tex">d\_{vc}而言</script>)，这样才能保证上面不等式的bound不会太大。(good <script type="math/tex">\mathcal{D}</script>)</li>
+<li>算法<script type="math/tex">\mathcal{A}</script>有办法在<script type="math/tex">\mathcal{H}</script>中顺利地挑选一个使得<script type="math/tex">E\_{in}</script>最小的方程<script type="math/tex">g</script>。(good <script type="math/tex">\mathcal{A}</script>)</li>
+</ol>
+<p>&emsp;&emsp;为什么要费那么大的力气来讲这个VC Bound和VC Dimension呢？因为对于初学者来说，最常犯的错误就是只考虑到了第3点，而忽略掉了前两点，往往能在training set上得到极好的表现，但是在test set中表现却很烂。关于算法<script type="math/tex">\mathcal{A}</script>的部分会在后续的笔记当中整理，目前我们只关心前面两点。</p>
+<h2 id="hypothesis-setvc-dimension">几种Hypothesis Set的VC Dimension</h2>
+<p>&emsp;&emsp;对于以下几个<script type="math/tex">\mathcal{H}</script>，由于之前我们已经知道了他们的成长函数(见<a href="http://beader.me/2014/01/23/vc-dimension-one/" target="_blank">机器学习笔记-VC Dimension, Part I</a>)，因此可以根据<script type="math/tex">m\_{\mathcal{H}}(N)\leq N^{d\_{vc}}</script>，直接得到他们的VC Dimension：</p>
+<ul>
+<li>positive rays: <script type="math/tex">m\_{\mathcal{H}}(N)=N+1</script>，看N的最高次项的次数，知道<script type="math/tex">d\_{vc}=1</script></li>
+<li>positive intervals: <script type="math/tex">m\_{\mathcal{H}}(N)=\frac{1}{2}N^2+\frac{1}{2}N+1</script>，<script type="math/tex">d\_{vc}=2</script></li>
+<li>convex sets: <script type="math/tex">m\_{\mathcal{H}}(N)=2^N</script>，<script type="math/tex">d\_{vc}=\infty</script></li>
+<li>2D Perceptrons: <script type="math/tex">m\_{\mathcal{H}}(N)\leq N^3\;for\;N\geq 2</script>，所以<script type="math/tex">d\_{vc}=3</script></li>
+</ul>
+<p>&emsp;&emsp;由于convex sets的<script type="math/tex">d\_{vc}=\infty</script>，不满足上面所说的第1个条件，因此不能用convex sets这个<script type="math/tex">\mathcal{H}</script>来学习。</p>
+<p>&emsp;&emsp;但这里要回归本意，通过成长函数来求得<script type="math/tex">d\_{vc}</script>没有太大的意义，引入<script type="math/tex">d\_{vc}</script>很大的一部分原因是，我们想要得到某个Hypothesis Set的成长函数是困难的，希望用<script type="math/tex">N^{d\_{vc}}</script>来bound住对应的<script type="math/tex">m\_{\mathcal{H}}(N)</script>。对于陌生的<script type="math/tex">\mathcal{H}</script>，如何求解它的<script type="math/tex">d\_{vc}</script>呢？</p>
+<h2 id="mathcalhvc-dimension---shatter">某个<script type="math/tex">\mathcal{H}</script>的VC Dimension - 从&quot;shatter&quot;的角度</h2>
+<p>&emsp;&emsp;Homework当中的某题，求解简化版决策树的VC Dimension：</p>
+<p>Consider the <strong>simplified decision trees</strong> hypothesis set on <script type="math/tex">\mathbb{R}^d</script>, which is given by</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{H} = \{&h_{t,S}\; |\; h_{t,S} = 2[v \in S] - 1, \text{where } v_i=[x_i\gt t_i], \\\
+&\textbf{S}\text{ is a collection of vectors in }\{0,1\}^d, \textbf{t}\in \mathbb{R}^d \}
+\end{aligned}
+</script>
+
+<p>That is, each hypothesis makes a prediction by first using the <script type="math/tex">d</script> thresholds <script type="math/tex">t_i</script> to locate <script type="math/tex">x</script> to be within one of the <script type="math/tex">2^d</script> hyper-rectangular regions, and looking up <script type="math/tex">S</script> to decide whether the region should be +1 or −1. What is the VC-dimension of the <strong>simplified decision trees</strong> hypothesis set?</p>
+<p>&emsp;&emsp;如何去理解题意呢？用一个2维的图来帮助理解：</p>
+<p><img src="images/2d_sim_decision_tree.png" alt=""></p>
+<p>&emsp;&emsp;首先把二维实数空间<script type="math/tex">\mathbb{R}^2</script>中的向量<script type="math/tex">x</script>，通过各个维度上的阈值<script type="math/tex">t\_i</script>，转换到<script type="math/tex">{\{0,1\}}^2</script>空间下的一个点<script type="math/tex">v</script>，规则为<script type="math/tex">v\_i=[x\_i\gt t\_i]</script>。譬如对于<script type="math/tex">t=[5,10]</script>，<script type="math/tex">x=[6,8]</script>可以转换为新的空间下的<script type="math/tex">[1,0]</script>。这样一来，原来的<script type="math/tex">\mathbb{R}^2</script>空间就可以被划分为4个区块<script type="math/tex">S\_1</script>~<script type="math/tex">S\_4</script>（hyper-rectangular regions）。<script type="math/tex">\mathcal{H}</script>中每一个方程<script type="math/tex">h</script>代表着一种对这4块区域是”圈圈“还是”叉叉“的决策(decision)，并且这4块区域的决策是互相独立的，<script type="math/tex">S\_1</script>的决策是”圈圈“还是”叉叉“和<script type="math/tex">S\_2,S\_3,S\_4</script>都没有关系。</p>
+<p>&emsp;&emsp;由于这4块区域的决策是互相独立的，那么它最多最多能shatter掉多少个点呢？4个，(当这4个点分别属于这4块区域的时候)，即这4块hyper-rectangular regions所代表的类别可以是(o,o,o,o)、(o,o,o,x)、(o,o,x,o)、...、(x,x,x,x),共16种可能，因此它能够shatter掉4个点。</p>
+<p>&emsp;&emsp;由上面2维的例子我们可以看出，<strong>simplified decision trees</strong>的VC Dimension，等于hyper-rectangular regions的个数。<script type="math/tex">d</script>维空间<script type="math/tex">\mathbb{R}^d</script>可以用<script type="math/tex">d</script>条直线切分出<script type="math/tex">2^d</script>个互相独立的hyper-rectangular regions，即最多最多可以shatter掉<script type="math/tex">2^d</script>个点，因此<strong>simplified decision trees</strong>的<script type="math/tex">d_{vc}=2^d</script>。</p>
+<p>&emsp;&emsp;我们再来回顾一下Positive Intervals： </p>
+<p><img src="images/positive_intervals.png" alt=""></p>
+<p>&emsp;&emsp;也可以按照上面的方法去理解，Positive Intervals有两个thresholds，把直线切分为3块空间。但这3块空间并不是相互独立，中间的部分永远是+1，左右两边永远是-1，所以还要具体看它能够shatter掉多少个点，这里最多最多只能shatter掉2个点，它的<script type="math/tex">d\_{vc}=2</script>。</p>
+<h2 id="mathcalhvc-dimension---">某个<script type="math/tex">\mathcal{H}</script>的VC Dimension - 从&quot;自由度&quot;的角度</h2>
+<p>&emsp;&emsp;对于<script type="math/tex">d\_{vc}</script>较小的<script type="math/tex">\mathcal{H}</script>，可以从它最多能够shatter的点的数量，得到<script type="math/tex">d\_{vc}</script>，但对于一些较为复杂的模型，寻找能够shatter掉的点的数量，就不太容易了。此时我们可以通过模型的自由度，来近似的得到模型的<script type="math/tex">d\_{vc}</script>。</p>
+<p>&emsp;&emsp;维基百科上有不止一个关于自由度的定义，每种定义站在的角度不同。在这里，我们定义自由度是，模型当中可以自由变动的参数的个数，即我们的机器需要通过学习来决定模型参数的个数。</p>
+<p>&emsp;&emsp;譬如：</p>
+<ul>
+<li>Positive Rays，需要确定1个threshold，这个threshold就是机器需要根据<script type="math/tex">\mathcal{D}</script>来确定的一个参数，则Positive Rays中自由的参数个数为1，</li>
+<li>Positive Intervals，需要确定左右2个thresholds，则可以由机器自由决定的参数的个数为2，<script type="math/tex">d\_{vc}=2</script></li>
+<li>d-D Perceptrons，<script type="math/tex">d</script>维的感知机，可以由机器通过学习自由决定的参数的个数为<script type="math/tex">d+1</script>（别忘了还有个<script type="math/tex">w\_0</script>），<script type="math/tex">d\_{vc}=d+1</script></li>
+</ul>
+<h2 id="mathcalhvc-dimension">多个<script type="math/tex">\mathcal{H}</script>的并集的VC Dimension</h2>
+<p>&emsp;&emsp;Homework当中某题，求<script type="math/tex">K</script>个Hypothesis Set的并集<script type="math/tex">d\_{vc}(\cup\_{k=1}^{K}\mathcal{H}\_k)</script>的VC Dimension的上下界。下界比较好判断，是<script type="math/tex">max\\{d\_{vc}(\mathcal{H}\_k)\\}\_{k=1}^K</script>，即所有的<script type="math/tex">\mathcal{H}</script>都包含于<script type="math/tex">d\_{vc}</script>最大的那个<script type="math/tex">\mathcal{H}</script>当中的时候。上界则出现在各个<script type="math/tex">\mathcal{H}</script>互相都没有交集的时候，我们不妨先来看看<script type="math/tex">K=2</script>的情况：</p>
+<p>&emsp;&emsp;求<script type="math/tex">d\_{vc}(\mathcal{H}\_1\cup \mathcal{H}\_2)</script>的上界，已知<script type="math/tex">d\_{vc}(\mathcal{H}\_1)=d\_1</script>，<script type="math/tex">d\_{vc}(\mathcal{H}\_2)=d\_2</script>。</p>
+<p>&emsp;&emsp;从成长函数上看，有 <script type="math/tex">m\_{\mathcal{H}\_1\cup \mathcal{H}\_2}(N) \leq m\_{\mathcal{H}\_1}(N) + m\_ {\mathcal{H}\_2}(N)</script>，把成长函数展开，有</p>
+<script type="math/tex; mode=display">
+m _ {\mathcal{H}_1\cup \mathcal{H}_2}(N) \leq \sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=0} ^ {d_2} \binom{N}{i}
+</script>
+
+<p>&emsp;&emsp;用<script type="math/tex">\binom{N}{i}=\binom{N}{N-i}</script>替换RHS，有</p>
+<script type="math/tex; mode=display">
+m _ {\mathcal{H}_1\cup \mathcal{H}_2}(N) \leq \sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=0} ^ {d_2} \binom{N}{N-i} \leq \sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=N-d_2} ^ {N} \binom{N}{i}
+</script>
+
+<p>&emsp;&emsp;我们可以尝试寻找下上面这个成长函数有可能的最大的break point，让<script type="math/tex">N</script>不断增大，直到出现<script type="math/tex">m\_{\mathcal{H}\_1\cup \mathcal{H}\_2}(N)\lt 2^N</script>的时候，这个<script type="math/tex">N</script>就是break point。那么<script type="math/tex">N</script>要多大才够呢？</p>
+<p>&emsp;&emsp;<script type="math/tex">N=d\_1</script>够大吗？不够，因为：</p>
+<script type="math/tex; mode=display">
+\sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=N-d_2} ^ {N} \binom{N}{i} = 2^N + \sum _ {i=N-d_2} ^ {N} \binom{N}{i} \gt 2^N
+</script>
+
+<p>&emsp;&emsp;<script type="math/tex">N=d\_1+d\_2+1</script>够大吗？还是不够，因为：</p>
+<script type="math/tex; mode=display">
+\sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=N-d_2} ^ {N} \binom{N}{i} = \sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=d_1+1} ^ {N} \binom{N}{i} = 2^N
+</script>
+
+<p>&emsp;&emsp;<script type="math/tex">N=d\_1+d\_2+2</script>够大吗？够大了，因为：</p>
+<script type="math/tex; mode=display">
+\sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=N-d_2} ^ {N} \binom{N}{i} = \sum _ {i=0} ^ {d_1} \binom{N}{i} + \sum _ {i=d_1+2} ^ {N} \binom{N}{i} = 2^N - \binom{N}{d_1+1} \lt 2^N
+</script>
+
+<p>&emsp;&emsp;所以<script type="math/tex">m\_{\mathcal{H}\_1\cup \mathcal{H}\_2}(N)</script>的break point最大可以是<script type="math/tex">d\_1+d\_2+2</script>，此时<script type="math/tex">d\_{vc}(\mathcal{H}\_1\cup \mathcal{H}\_2)=d\_1+d\_2+1</script>。</p>
+<p>&emsp;&emsp;因此两个<script type="math/tex">\mathcal{H}</script>的并集的VC Dimension的上界为<script type="math/tex">d\_{vc}(\mathcal{H}\_1)+d\_{vc}(\mathcal{H}\_2)+1</script>。利用此方法，就很容易可以推出<script type="math/tex">K</script>个<script type="math/tex">\mathcal{H}</script>的并集的情况。</p>
+<h2 id="-vs-">简单 v.s 复杂</h2>
+<p>&emsp;&emsp;<a href="http://beader.me/2014/01/23/vc-dimension-one/" target="_blank">机器学习笔记-VC Dimension, Part I</a>一开始就提到，learning的问题应该关注的两个最重要的问题是：1.能不能使<script type="math/tex">E\_{in}</script>与<script type="math/tex">E\_{out}</script>很接近，2.能不能使<script type="math/tex">E\_{in}</script>足够小。</p>
+<ul>
+<li>对于相同的<script type="math/tex">\mathcal{D}</script>而言，<script type="math/tex">d\_{vc}</script>小的模型，其VC Bound比较小，比较容易保证<script type="math/tex">E\_{in}</script>与<script type="math/tex">E\_{out}</script>很接近，但较难做到小的<script type="math/tex">E\_{in}</script>，试想，对于2D Perceptron，如果规定它一定要过原点(<script type="math/tex">d\_{vc}=2</script>)，则它就比没有规定要过原点(<script type="math/tex">d\_{vc}=3</script>)的直线更难实现小的<script type="math/tex">E\_{in}</script>，因为可选的方程更少。2维平面的直线，就比双曲线(<script type="math/tex">d\_{vc}=6</script>)，更难实现小的<script type="math/tex">E\_{in}</script>。</li>
+<li>对于相同的<script type="math/tex">\mathcal{D}</script>而言，<script type="math/tex">d\_{vc}</script>大的模型，比较容易实现小的<script type="math/tex">E\_{in}</script>，但是其VC Bound就会很大，很难保证模型对<script type="math/tex">\mathcal{D}</script>之外的世界也能有同样强的预测能力。</li>
+</ul>
+<p>&emsp;&emsp;令之前得到的VC Bound为<script type="math/tex">\delta</script>，坏事情<script type="math/tex">[|E\_{in}(g)-E\_{out}(g)|\gt \epsilon]</script>发生的概率小于<script type="math/tex">\delta</script>，则好事情<script type="math/tex">[|E\_{in}(g)-E\_{out}(g)|\leq \epsilon]</script>发生的概率就大于<script type="math/tex">1-\delta</script>，这个<script type="math/tex">1-\delta</script>在统计学中又被称为置信度，或信心水准。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\text{set}\;\;\;\;\delta &= 4(2N)^{d_{vc}}exp(-\frac{1}{8}\epsilon^2N)\\\
+\sqrt{\frac{8}{N}ln(\frac{4(2N)^{d_{vc}}}{\delta})} &= \epsilon
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;因此<script type="math/tex">E\_{in}</script>、<script type="math/tex">E\_{out}</script>又有下面的关系：</p>
+<script type="math/tex; mode=display">E_{in}(g)-\sqrt{\frac{8}{N}ln(\frac{4(2N)^{d_{vc}}}{\delta})} \leq E_{out}(g) \leq E_{in}(g)+\sqrt{\frac{8}{N}ln(\frac{4(2N)^{d_{vc}}}{\delta})}</script>
+
+<p>&emsp;&emsp;令<script type="math/tex">\Omega (N,\mathcal{H},\delta)=\sqrt{...}</script>，即上式的根号项为来自模型复杂度的，模型越复杂，<script type="math/tex">E\_{in}</script>与<script type="math/tex">E\_{out}</script>离得越远。</p>
+<p><img src="images/model_complexity_curve.png" alt=""></p>
+<p>&emsp;&emsp;随着<script type="math/tex">d\_{vc}</script>的上升，<script type="math/tex">E\_{in}</script>不断降低，而<script type="math/tex">\Omega</script>项不断上升，他们的上升与下降的速度在每个阶段都是不同的，因此我们能够寻找一个二者兼顾的，比较合适的<script type="math/tex">d\_{vc}^{\*}</script>，用来决定应该使用多复杂的模型。</p>
+<p>&emsp;&emsp;反过来，如果我们需要使用<script type="math/tex">d\_{vc}=3</script>这种复杂程度的模型，并且想保证<script type="math/tex">\epsilon = 0.1</script>，置信度<script type="math/tex">1-\delta =90\%</script>，我们也可以通过VC Bound来求得大致需要的数据量<script type="math/tex">N</script>。通过简单的计算可以得到理论上，我们需要<script type="math/tex">N\approx 10,000d\_{vc}</script>笔数据，但VC Bound事实上是一个极为宽松的bound，因为它对于任何演算法<script type="math/tex">\mathcal{A}</script>，任何分布的数据，任何目标函数<script type="math/tex">f</script>都成立，所以经验上，常常认为<script type="math/tex">N\approx 10d\_{vc}</script>就可以有不错的结果。</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../section2/vc-dimension-two.html" class="navigation navigation-prev " aria-label="Previous page: VC Dimension Part II"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../section2/noise-and-error.html" class="navigation navigation-next " aria-label="Next page: Noise and Error"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"disqus":{"shortName":"mlnotebook"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

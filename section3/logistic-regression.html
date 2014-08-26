@@ -1,0 +1,599 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Logistic Regression | 机器学习笔记</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="beader">
+    
+    
+    <link rel="next" href="../section3/linear_models_for_classification.html" />
+    
+    
+    <link rel="prev" href="../section3/linear-regression.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-github="beader/mlnotebook" data-level="3.2" data-basepath=".." data-revision="1409033329936">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/beader/mlnotebook" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >机器学习笔记</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/beader" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/issues" target="blank" class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/beader/mlnotebook/edit/master/section3/logistic-regression.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+	
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="section1/README.html">
+            
+                
+                    <a href="../section1/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         When Can Machines Learn?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="section2/README.html">
+            
+                
+                    <a href="../section2/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Why Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="section2/is-learning-feasible.html">
+            
+                
+                    <a href="../section2/is-learning-feasible.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         机器学习的可行性
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="section2/vc-dimension-one.html">
+            
+                
+                    <a href="../section2/vc-dimension-one.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         VC Dimension Part I
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="section2/vc-dimension-two.html">
+            
+                
+                    <a href="../section2/vc-dimension-two.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                         VC Dimension Part II
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4" data-path="section2/vc-dimension-three.html">
+            
+                
+                    <a href="../section2/vc-dimension-three.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         VC Dimension Part III
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="section2/noise-and-error.html">
+            
+                
+                    <a href="../section2/noise-and-error.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         Noise and Error
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="section3/README.html">
+            
+                
+                    <a href="../section3/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         How Can Machines Learn?
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="section3/linear-regression.html">
+            
+                
+                    <a href="../section3/linear-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Linear Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="3.2" data-path="section3/logistic-regression.html">
+            
+                
+                    <a href="../section3/logistic-regression.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Logistic Regression
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="section3/linear_models_for_classification.html">
+            
+                
+                    <a href="../section3/linear_models_for_classification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Linear Models for Classification
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="section4/README.html">
+            
+                
+                    <a href="../section4/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         How Can Machines Learn Better?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="section5/README.html">
+            
+                
+                    <a href="../section5/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         FAQ
+                    </a>
+                
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 76.92307692307692%;min-width: 69.23076923076923%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../section1/README.html" title="When Can Machines Learn?" class="chapter done new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+    
+        <a href="../section2/README.html" title="Why Can Machines Learn?" class="chapter done new-chapter" data-progress="2" style="left: 15.384615384615385%;"></a>
+    
+        <a href="../section2/is-learning-feasible.html" title="机器学习的可行性" class="chapter done " data-progress="2.1" style="left: 23.076923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-one.html" title="VC Dimension Part I" class="chapter done " data-progress="2.2" style="left: 30.76923076923077%;"></a>
+    
+        <a href="../section2/vc-dimension-two.html" title="VC Dimension Part II" class="chapter done " data-progress="2.3" style="left: 38.46153846153846%;"></a>
+    
+        <a href="../section2/vc-dimension-three.html" title="VC Dimension Part III" class="chapter done " data-progress="2.4" style="left: 46.15384615384615%;"></a>
+    
+        <a href="../section2/noise-and-error.html" title="Noise and Error" class="chapter done " data-progress="2.5" style="left: 53.84615384615385%;"></a>
+    
+        <a href="../section3/README.html" title="How Can Machines Learn?" class="chapter done new-chapter" data-progress="3" style="left: 61.53846153846154%;"></a>
+    
+        <a href="../section3/linear-regression.html" title="Linear Regression" class="chapter done " data-progress="3.1" style="left: 69.23076923076923%;"></a>
+    
+        <a href="../section3/logistic-regression.html" title="Logistic Regression" class="chapter done " data-progress="3.2" style="left: 76.92307692307692%;"></a>
+    
+        <a href="../section3/linear_models_for_classification.html" title="Linear Models for Classification" class="chapter  " data-progress="3.3" style="left: 84.61538461538461%;"></a>
+    
+        <a href="../section4/README.html" title="How Can Machines Learn Better?" class="chapter  new-chapter" data-progress="4" style="left: 92.3076923076923%;"></a>
+    
+        <a href="../section5/README.html" title="FAQ" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_12">
+                    
+                        <p>&emsp;&emsp;<a href="http://beader.me/2014/03/09/linear-regression/" target="_blank">上一篇</a>比较深入地去理解了线性回归的思想和算法。分类和回归是机器学习中很重要的两大内容。而本篇要讲的Logistic Regression，名字上看是回归，但实际上却又和分类有关。</p>
+<p>&emsp;&emsp;之前提过的二元分类器如PLA，其目标函数为， <script type="math/tex">f(x)=sign(w^Tx)\in\{-1,+1\}</script>，输出要么是-1要么是+1，是一个“硬”的分类器。而Logistic Regression是一个“软”的分类器，它的输出是<script type="math/tex">y=+1</script>的概率，因此Logistic Regression的目标函数是 <script type="math/tex">\color{purple}{f}(x)=\color{orange}{P(+1|x)}\in [0,1]</script>。</p>
+<h2 id="">方程的形式</h2>
+<script type="math/tex; mode=display">
+h(x)=\frac{1}{1+exp(-w^Tx)}
+</script>
+
+<p>&emsp;&emsp;上面的方程背后有什么逻辑呢？</p>
+<p>&emsp;&emsp;假设医院知道一个病人的年龄、性别、血压、胆固醇水平，可以为他计算他得某种病的概率。最简单的做法就是对这几个特征进行加权求和：</p>
+<script type="math/tex; mode=display">
+\color{purple}{s}=\sum_{i=\color{red}{0}}^d\color{orange}{w_i}{x_i}=w^Tx
+</script>
+
+<p>&emsp;&emsp;但这里有个问题，就是 <script type="math/tex">\color{purple}{s}</script> 的取值范围是<script type="math/tex">[-\infty,+\infty]</script>，而我们希望输出的是对该病人患病概率的一个估计，就需要把输出空间<script type="math/tex">[-\infty,+\infty]</script>转换到<script type="math/tex">[0,1]</script>上。如何变换？通过sigmoid函数 <script type="math/tex">\color{blue}{\theta}</script> 。</p>
+<script type="math/tex; mode=display">\color{blue}{\theta}(\color{purple}{s})=\frac{e^\color{purple}{s}}{1+e^\color{purple}{s}}=\frac{1}{1+e^\color{purple}{-s}}</script><p><img src="images/sigmoid_function.png" alt=""></p>
+<p>&emsp;&emsp;因此，我们就可以利用经过sigmoid变换后的方程来对患病概率进行一个估计。</p>
+<h2 id="---cross-entropy-error">误差的衡量 - Cross Entropy Error</h2>
+<p>&emsp;&emsp;有了方程的形式，我们就需要一个误差的衡量方式。<a href="http://beader.me/2014/03/09/linear-regression/" target="_blank">上一篇</a>我们讲到Linear Regression所使用的是平方误差，那么Logistic 可以使用平方误差吗？当然可以，error是人定的，你爱怎么定就怎么定，但是使用平方误差好不好，不好。为什么呢？</p>
+<p>&emsp;&emsp;如果使用平方误差，每个点产生的误差是：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+err(h,x_n,y_n) &=
+\left\{
+\begin{matrix}
+(\color{blue}{\theta}(w^Tx)-0)^2 & y_n=0 \\\
+(1-\color{blue}{\theta}(w^Tx))^2 & y_n=1
+\end{matrix}\right. \\\
+&=y_n(1-\color{blue}{\theta}(w^Tx))^2+(1-y_n)\color{blue}{\theta}^2(w^Tx)
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;此时cost function，<script type="math/tex">E\_{in}(w)=\sum{err}</script>就是一个关于<script type="math/tex">w</script>的非凸函数(non-convex)：</p>
+<p><img src="images/non_convex.png" alt=""></p>
+<p>&emsp;&emsp;非凸函数由于存在很多个局部最小点，因此很难去做最优化(解全局最小)。所以Logistic Regression没有使用平方误差来定义error，而是使用极大似然法来估计模型的参数。那么我们就要先来了解一下这个似然性(likelihood)。
+&emsp;&emsp;Logistic Regression的目标函数的输出是，在已知<script type="math/tex">x</script>的条件下，<script type="math/tex">y=+1</script>的概率，因此在已知<script type="math/tex">x</script>的条件下，<script type="math/tex">y=+1</script>的概率是<script type="math/tex">f(x)</script>，<script type="math/tex">y=-1</script>的概率是<script type="math/tex">1-f(x)</script>:</p>
+<script type="math/tex; mode=display">
+\color{purple}{f}(x)=\color{orange}{P(}\color{blue}{+1}\color{orange}{|x)} \Leftrightarrow \color{orange}{P(y|x)}=
+\left\{\begin{matrix}
+\color{purple}{f}\color{blue}{(x)} & \color{blue}{\text{for } y=+1}\\\ 
+\color{red}{1-}\color{purple}{f}\color{red}{(x)} & \color{red}{\text{for }y=-1}
+\end{matrix}\right.
+</script>
+
+
+
+<p>&emsp;&emsp;考虑我们的训练样本<script type="math/tex">\mathcal{D}=\{(x\_1,\color{blue}{+1}),(x\_2,\color{red}{-1}),...,(x\_N,\color{red}{-1})\}</script>，并不是每次抽样都能抽到一模一样的<script type="math/tex">\mathcal{D}</script>，抽到这么一份样本是由于各种的机缘巧合。那么我们能抽到这么一份<script type="math/tex">\mathcal{D}</script>的概率取决于两部分：1、抽到样本<script type="math/tex">x\_1,...,x\_N</script>的概率；2、这些样本对应的<script type="math/tex">y\_1,...,y\_N</script>等于<script type="math/tex">\color{red}{+1}</script>的概率。</p>
+<p><img src="images/probs_and_likelihood.png" alt=""></p>
+<p>&emsp;&emsp;对于目标函数 <script type="math/tex">\color{purple}{f}</script>，抽到<script type="math/tex">\mathcal{D}</script>的概率只取决于第1部分，而我们无法知道 <script type="math/tex">\color{purple}{f}</script>，即第2部分也是未知的，因此我们称在 <script type="math/tex">\color{orange}(h)</script>的作用下抽出<script type="math/tex">\mathcal{D}</script>的概率为“似然性”。如果 <script type="math/tex">\color{orange}{h}\approx\color{purple}{f}</script>，则 <script type="math/tex">likelihood(\color{orange}{h})\approx \text{probability using }\color{purple}{f}</script>，并且我们认为在 <script type="math/tex">\color{purple}{f}</script>的作用下，产生<script type="math/tex">\mathcal{D}</script>这样的样本的概率通常是非常的大的。</p>
+<p><img src="images/probs_and_likelihood_2.png" alt=""></p>
+<p>&emsp;&emsp;所以有：</p>
+<script type="math/tex; mode=display">\text{if } \color{orange}{h}\approx\color{purple}{f}\text{, then }\; likelihood(\color{orange}{h})\approx(\text{probability using }\color{purple}{f})\approx\color{purple}{\text{large}}</script><p>&emsp;&emsp;则理想的hypothesis就是能使得似然函数最大的那个<script type="math/tex">h</script>：</p>
+<script type="math/tex; mode=display">g=\underset{\color{orange}{h}}{argmax}\;likelihood(\color{orange}{h})</script><p>&emsp;&emsp;当<script type="math/tex">\color{orange}{h}</script>是logistic函数的时候，即<script type="math/tex">h(x)=\theta(w^Tx)</script>，由于logistic函数的中心对称性，有:</p>
+<script type="math/tex; mode=display">1-h(x)=h(-x)</script><p>&emsp;&emsp;所以有:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+likelihood(\color{orange}{h})&=\color{grey}{P(x_1)}\color{orange}{h}\color{blue}{(x_1)}\color{grey}{\times P(x_2)}\color{red}{(1-\color{orange}{h}(x_2))}\color{grey}{\times ...\times P(x_N)}\color{red}{(1-\color{orange}{h}(x_N))} \\\
+&= \color{grey}{P(x_1)}\color{orange}{h}\color{blue}{(x_1)}\color{grey}{\times P(x_2)}\color{red}{(\color{orange}{h}(-x_2))}\color{grey}{\times ...\times P(x_N)}\color{red}{(\color{orange}{h}(-x_N))} \\\
+&= \color{grey}{P(x_1)}\color{orange}{h}\color{blue}{(x_1)}\color{grey}{\times P(x_2)}\color{red}{(\color{orange}{h}(y_2x_2))}\color{grey}{\times ...\times P(x_N)}\color{red}{(\color{orange}{h}(y_Nx_N))}
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;因此有这么一个相似性:</p>
+<script type="math/tex; mode=display">likelihood(logistic\;\color{orange}{h})\propto \prod_{n=1}^{N}\color{orange}{h}(y_nx_n)</script><p>&emsp;&emsp;我们的目标是想找到一个似然性最大的方程:</p>
+<script type="math/tex; mode=display">\underset{\color{orange}{h}}{max}\;\;\color{grey}{likelihood(logistic\;\color{orange}{h}) \propto}\prod_{n=1}^{N}\color{orange}{h}(y_nx_n)</script><p>&emsp;&emsp;转化成与参数<script type="math/tex">w</script>有关的形式:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\underset{\color{orange}{w}}{max}\;\;\color{grey}{likelihood(\color{orange}{w})} &\propto\prod_{n=1}^{N}\theta(y_n\color{orange}{w}^Tx_n) \\\
+&\propto ln\prod_{n=1}^{N}\theta(y_n\color{orange}{w}^Tx_n) \\\
+&\propto \color{grey}{\frac{1}{N}}\sum_{n=1}^{N}ln\,\theta(y_n\color{orange}{w}^Tx_n)
+\end{aligned} 
+</script>
+
+<p>&emsp;&emsp;求解上式最大值，等价于求解下式的最小值:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\;\;\;\;\underset{\color{orange}{w}}{min}\;\color{grey}{\frac{1}{N}}\sum_{n=1}^{N}-ln\,\theta(y_n\color{orange}{w}^Tx_n) \\\
+&\Rightarrow \underset{\color{orange}{w}}{min}\;\color{grey}{\frac{1}{N}}\sum_{n=1}^{N}ln(1+exp(-y_n\color{orange}{w}^Tx_n))
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;求和符号后面的部分就是在极大似然估计下，logistic方程的误差函数，这种形式的误差函数称为cross entropy error:</p>
+<script type="math/tex; mode=display">err(\color{orange}{w},x,y)=ln(1+exp(-y\color{orange}{w}x))\\\
+\color{blue}{\text{cross-entropy error}}</script><h2 id="cost-function">Cost function</h2>
+<p>&emsp;&emsp;有了误差函数后，我们就可以定出Cost function:</p>
+<script type="math/tex; mode=display">
+E_{in}(\color{orange}{w})=\frac{1}{N}\sum_{n=1}^{N}ln(1+exp(-y_n\color{orange}{w}^Tx_n))
+</script>
+
+<p><img src="images/costf_logistic.png" alt=""></p>
+<p>&emsp;&emsp;该函数是连续，可微，并且是凸函数(二次微分矩阵是正定的)。</p>
+<h2 id="e_inw">如何最小化<script type="math/tex">E\_{in}(w)</script></h2>
+<p>&emsp;&emsp;那么如何能够最小化<script type="math/tex">E\_{in}(w)</script>呢？按照之前Linear Regression的逻辑，由于它是凸函数，如果我们能解出一阶微分(梯度)为0的点，这个问题就解决了。</p>
+<p>&emsp;&emsp;先来看看<script type="math/tex">E\_{in}(w)</script>在<script type="math/tex">w\_i</script>方向上的偏微分：</p>
+<p><img src="images/deriv_costf_logistic.png" alt=""></p>
+<p>&emsp;&emsp;再把偏微分方程中的<script type="math/tex">x\_{n,i}</script>换成向量的形式，就得到<script type="math/tex">E\_{in}(w)</script>的一阶微分:</p>
+<script type="math/tex; mode=display">
+\triangledown E_{in}(w)=\frac{1}{N}\sum_{n=1}^{N}\color{purple}{\theta(\color{black}{-y_nw^Tx_n})}\color{orange}{(-y_nx_n)}
+</script>
+
+<p>&emsp;&emsp;和之前的Linear Regression不同，它不是一个线性的式子，要求解<script type="math/tex">\triangledown E\_{in}(w)=0</script>这个式子，是困难的。那么该使用何种方法实现<script type="math/tex">E\_{in}(w)</script>最小化呢？</p>
+<p>&emsp;&emsp;这里可以使用类似<a href="http://beader.me/2013/12/21/perceptron-learning-algorithm/" target="_blank">PLA</a>当中的，通过迭代的方式来求解，这种方法又称为梯度下降法(Gradient Descent)。</p>
+<p>&emsp;&emsp;For t = 0, 1, ...</p>
+<script type="math/tex; mode=display">w_{t+1} \leftarrow w_t + \color{red}{\eta}\color{blue}{v}</script><p>&emsp;&emsp;when stop, return <script type="math/tex">\color{purple}{\text{last w as g}}</script></p>
+<p>&emsp;&emsp;其中<script type="math/tex">\color{red}{\eta}</script>为每步更新的大小(step size)，<script type="math/tex">\color{blue}{v}</script>是单位向量，表示每次更新的方向。</p>
+<p><img src="images/iterative_opt.png" alt=""></p>
+<p>&emsp;&emsp;有点类似一个小球，往山谷方向滚，直至山谷。每一步我们只要决定两个东西：1、滚动的方向；2、滚动的步长。</p>
+<p>&emsp;&emsp;滚动的方向好决定，即在该点一阶微分后的向量所指的方向：</p>
+<script type="math/tex; mode=display">
+\color{blue}{v}=-\frac{\triangledown E_{in}(w_t)}{||\triangledown E_{in}(w_t)||}
+</script>
+
+<p>&emsp;&emsp;步长 <script type="math/tex">\color{red}{\eta}</script>比较难决定，太小了，更新太慢，太大了，容易矫枉过正:</p>
+<p><img src="images/choise_of_eta.png" alt=""></p>
+<p>&emsp;&emsp;一个比较好的做法是让 <script type="math/tex">\color{red}{\eta}</script> 与 <script type="math/tex">\color{blue}{||\triangledown E\_{in}(w\_t)||}</script> 成一定的比例，让新的和<script type="math/tex">\color{blue}{||\triangledown E\_{in}(w\_t)||}</script>成比例的<script type="math/tex">\color{purple}{\text{紫色的 }\eta}</script> 来代替原来<script type="math/tex">\color{red}{\text{红色的 }\eta}</script>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+w_{t+1} \leftarrow & w_t - \color{red}{\eta} \color{blue}{\frac{\triangledown E_{in}(w_t)}{||\triangledown E_{in}(w_t)||}} \\\
+&\;\;\;\;\;\;\;\;\;\parallel \\\
+&w_t - \color{purple}{\eta}\,\color{blue}{\triangledown E_{in}(w_t)}
+\end{aligned}
+</script>
+
+<p>&emsp;&emsp;我们称这个<script type="math/tex">\color{purple}{\text{紫色的 }\eta}</script> 为 <script type="math/tex">\color{purple}{\text{fixed learning rate}}</script>。</p>
+<p>&emsp;&emsp;再来完整的梳理下梯度下降法(Gradient Descent):</p>
+<p>&emsp;&emsp;initialize <script type="math/tex">w\_0</script></p>
+<p>&emsp;&emsp;For t = 0, 1, ...</p>
+<p>&emsp;&emsp;1. compute</p>
+<script type="math/tex; mode=display">
+\triangledown E_{in}(w)=\frac{1}{N}\sum_{n=1}^{N}\color{purple}{\theta(\color{black}{-y_nw^Tx_n})}\color{orange}{(-y_nx_n)}
+</script>
+
+<p>&emsp;&emsp;2. update by</p>
+<script type="math/tex; mode=display">
+w_t - \color{purple}{\eta}\,\color{blue}{\triangledown E_{in}(w_t)}
+</script>
+
+<p>&emsp;&emsp;...until <script type="math/tex">\color{orange}{E\_{in}(w\_{t+1})=0}</script> or enough iterations</p>
+<p>&emsp;&emsp;return <script type="math/tex">\color{purple}{\text{last }w\_{t+1}\text{ as }g}</script></p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../section3/linear-regression.html" class="navigation navigation-prev " aria-label="Previous page: Linear Regression"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../section3/linear_models_for_classification.html" class="navigation navigation-next " aria-label="Next page: Linear Models for Classification"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"disqus":{"shortName":"mlnotebook"}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
