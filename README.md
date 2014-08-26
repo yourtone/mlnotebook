@@ -12,8 +12,9 @@
 
 [机器学习基石](http://pan.baidu.com/s/1c0rJfjU)
 
-[机器学习技巧](http://pan.baidu.com/s/1bngpNL9)
+[机器学习技法](http://pan.baidu.com/s/1bngpNL9)
 
 有些地方的朋友访问coursera速度较慢，可以使用网盘下载老师上课的视频：
 
-[上课视频](http://pan.baidu.com/s/1mgt4D3y)
+[机器学习基石上课视频](http://pan.baidu.com/s/1mgt4D3y)
+[机器学习技法抢先体验](http://yunpan.cn/QaDC3eMSqyAsk)(提取码：6b01）
