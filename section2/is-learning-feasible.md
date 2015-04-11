@@ -81,7 +81,7 @@ $$\mathbb{P}[|\nu-\mu|>\epsilon]\leq 2exp(-2\epsilon ^2N)$$
 
 &emsp;&emsp;利用之前抓小球的逻辑，我们可以利用sample中orange的比例来推断总体中orange出现的概率，则同样的，我们可以利用sample中$h(x)\neq f(x)$的比例来推断总体中$h(x)\neq f(x)$的概率。这里$h(x)\neq f(x)$表示一个error，则我们可以称 $h(x)$ 在sample中出现error的比例为 $E\_{in}$ (in-sample-error)，在总体中出现error的概率为 $E\_{out}$ (out-of-sample-error)。则对于 $h$ 来说：
 
- - $E_{out}(h) = \underset{x\sim P}{\epsilon} [h(x)\neq f(x)]$，$\epsilon$表示数学期望
+ - $E\_{out}(h) = \underset{x\sim P}{\epsilon} [h(x)\neq f(x)]$，$\epsilon$表示数学期望
 
  - $E\_{in}(h) = \frac{1}{N}\sum\_{n=1} ^ {N}[h(x\_n)\neq y\_n]$
 
